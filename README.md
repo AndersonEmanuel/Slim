@@ -1,2 +1,2 @@
-# Silex
+# Slim
 
