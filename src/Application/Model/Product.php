@@ -1,0 +1,20 @@
+<?php
+
+namespace Application\Model;
+
+use \Illuminate\Database\Eloquent\Model;
+
+/**
+ * 
+ * Description of Product
+ * 
+ * @package Application
+ * @author Anderson Emanuel <contato@andersonemanuel.com.br>
+ * @copyright (c) 2017, Anderson Emanuel
+ * @version 1.0
+ */
+class Product extends Model {
+
+    protected $table = 'product';
+
+}
