@@ -24,28 +24,6 @@ class DefaultController {
      */
     public function __invoke(Request $request, Response $response) {
 
-        $controller = $request->getAttribute('controller');
-        $action = $request->getAttribute('action');
-        $parameters = $request->getAttribute('parameters');
-
-        $controller = sprintf("\Application\Model\%s", $controller);
-
-        $class = new $controller();
-
-        if ($request->isGet()) {
-            $return = call_user_func(array($class, $action));
-            $response = $response->withJson($return);
-        }
-        if ($request->isPost()) {
-            $response->getBody()->write('Hello world');
-        }
-        if ($request->isPut()) {
-            $response->getBody()->write('Hello world');
-        }
-        if ($request->isDelete()) {
-            $response->getBody()->write('Hello world');
-        }
-
         return $response;
     }
 
