@@ -32,7 +32,7 @@ class ServerCommand extends Command {
         $io = new SymfonyStyle($input, $output);
 
         $io->title("Running a PHP Built-In Server");
-        $io->text("Server listening on http://localhost:8080");
+        $io->text("Server running at http://localhost:8080");
         $io->comment("Quit the server with CONTROL-C");
 
         exec(sprintf("php -S localhost:8080 -t %s%sweb", getcwd(), DIRECTORY_SEPARATOR));
