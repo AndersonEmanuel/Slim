@@ -3,6 +3,7 @@
 namespace Application\Commands;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -27,7 +28,13 @@ class ServerCommand extends Command {
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $output->write("Run server in http://localhost:8080 \n");
+
+        $io = new SymfonyStyle($input, $output);
+
+        $io->title("Running a PHP Built-In Server");
+        $io->text("Server listening on http://localhost:8080");
+        $io->comment("Quit the server with CONTROL-C");
+
         exec(sprintf("php -S localhost:8080 -t %s%sweb", getcwd(), DIRECTORY_SEPARATOR));
     }
 
