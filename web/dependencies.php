@@ -12,7 +12,7 @@ $container['db'] = function ($container) {
     $capsule->getContainer()->singleton(Illuminate\Contracts\Debug\ExceptionHandler::class);
     return $capsule;
 };
-/*
+
 $container['errorHandler'] = function ($container) {
     return function (Slim\Http\Request $request, Slim\Http\Response $response, \Exception $exception) use ($container) {
         //return $response->withStatus(500)->withHeader('Content-Type', 'text/html')->write('Internal Server Error');
@@ -40,5 +40,5 @@ $container['phpErrorHandler'] = function ($container) {
         return $response->withJson(array(array("CODE" => 500, "DESCRIPTION" => "Internal Server Error")), 500);
     };
 };
-*/
+
 $container['db'];

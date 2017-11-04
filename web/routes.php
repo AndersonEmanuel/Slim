@@ -15,12 +15,12 @@ $app->post('/login', function ($request, $response) {
     $email = filter_input(INPUT_POST, 'email');
     $password = filter_input(INPUT_POST, 'password');
 
-    $table = $this->db->table('users');
-
-    $users = $table->where([
+    //$table = $this->db->table('user');
+    $users = \Application\Model\User::where([
                 'email' => $email,
                 'password' => $password
             ])->get();
+
     if ($users->count()) {
         $_SESSION['user'] = (array) $users->first();
         return $response->withStatus(302)->withHeader('Location', '/users');

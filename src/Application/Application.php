@@ -29,7 +29,7 @@ class Application extends \Slim\App {
     public function __construct(Container $container) {
         parent::__construct($container);
 
-        $this->any('/{controller}/{action}[/{parameters:[0-9]+}]', \Application\Controller\DefaultController::class);
+        //$this->any('/{controller}/{action}[/{parameters:[0-9]+}]', \Application\Controller\DefaultController::class);
 
         //$this->add(new \Application\Middleware\Authentication());
     }
