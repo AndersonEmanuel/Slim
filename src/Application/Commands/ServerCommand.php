@@ -35,7 +35,7 @@ class ServerCommand extends Command {
         $io->text("Server running at http://localhost:8080");
         $io->comment("Quit the server with CONTROL-C");
 
-        exec(sprintf("php -S localhost:8080 -t %s%sweb", getcwd(), DIRECTORY_SEPARATOR));
+        exec(sprintf("php -S 0.0.0.0:8080 -t web web%sindex.php", DIRECTORY_SEPARATOR));
     }
 
 }
