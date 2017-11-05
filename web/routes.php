@@ -12,7 +12,7 @@ $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $res
 });
 
 $app->post('/login', function ($request, $response) {
-    $email = filter_input(INPUT_POST, 'email');
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = filter_input(INPUT_POST, 'password');
 
     //$table = $this->db->table('user');
