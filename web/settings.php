@@ -18,6 +18,7 @@ return [
         'mailer' => [
             'transport' => (string) env("MAILER_TRANSPORT"),
             'port' => (int) env("MAILER_PORT"),
+            'encryption' => (string) env("MAILER_ENCRYPTION"),
             'username' => (string) env("MAILER_USERNAME"),
             'password' => (string) env("MAILER_PASSWORD"),
         ],
