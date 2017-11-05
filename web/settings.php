@@ -2,17 +2,24 @@
 
 return [
     'settings' => [
-        'determineRouteBeforeAppMiddleware' => false,
-        'displayErrorDetails' => true,
+        'determineRouteBeforeAppMiddleware' => (bool) false,
+        'displayErrorDetails' => (bool) true,
         'db' => [
-            'driver' => 'mysql',
-            'host' => 'localhost',
-            'database' => 'mydb',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-        ]
+            'driver' => (string) env("DB_DRIVER"),
+            'host' => (string) env("DB_HOST"),
+            'database' => (string) env("DB_NAME"),
+            'username' => (string) env("DB_USERNAME"),
+            'password' => (string) env("DB_PASSWORD"),
+            'charset' => (string) env("DB_CHARSET"),
+            'collation' => (string) env("DB_COLLATION"),
+            'port' => (int) env("DB_PORT"),
+            'prefix' => (string) env("DB_PREFIX"),
+        ],
+        'mailer' => [
+            'transport' => (string) env("MAILER_TRANSPORT"),
+            'port' => (int) env("MAILER_PORT"),
+            'username' => (string) env("MAILER_USERNAME"),
+            'password' => (string) env("MAILER_PASSWORD"),
+        ],
     ],
 ];
