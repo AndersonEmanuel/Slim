@@ -1,6 +1,6 @@
 <?php
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
 $dotenv->load();
 
 $configuration = require __DIR__ . '/../web/settings.php';
