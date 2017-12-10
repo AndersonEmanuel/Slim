@@ -41,7 +41,7 @@
             "php bin\\console server:run"
         ],
         "post-update-cmd": [
-            "php bin\\console server:run"
+            
         ]
     }
 }
