@@ -17,4 +17,20 @@ class Sale extends Model {
 
     protected $table = 'sale';
 
+    public function customer() {
+        return $this->hasOne(\Application\Model\Customer::class, 'id', 'id_customer');
+    }
+
+    public function paymentType() {
+        return $this->hasOne(\Application\Model\PaymentType::class, 'id', 'id_payment_type');
+    }
+
+    public function user() {
+        return $this->hasOne(\Application\Model\User::class, 'id', 'id_user');
+    }
+
+    public function saleProduct() {
+        return $this->hasMany(\Application\Model\SaleProduct::class, 'id_sale', 'id');
+    }
+
 }
