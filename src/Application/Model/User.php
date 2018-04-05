@@ -15,6 +15,9 @@ use \Illuminate\Database\Eloquent\Model;
  */
 class User extends Model {
 
+    const CREATED_AT = 'insertion_date';
+    const UPDATED_AT = 'edition_date';
+
     protected $table = 'user';
 
 }
