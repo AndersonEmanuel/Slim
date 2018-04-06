@@ -117,7 +117,12 @@ $app->delete('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http
 });
 
 $app->get('/price', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Price::all());
+    return $response->withJson(
+                    \Application\Model\Price::
+                            with('product')
+                            ->with('paymentType')
+                            ->get()
+    );
 });
 
 $app->post('/price', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -135,8 +140,8 @@ $app->delete('/price/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
 $app->get('/product', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(
                     \Application\Model\Product::
-                            with('stock')
-                            ->with('price')
+                            with('productStock')
+                            ->with('productPrice')
                             ->get()
     );
 });
