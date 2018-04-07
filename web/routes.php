@@ -207,6 +207,21 @@ $app->delete('/log/{id}', function(Slim\Http\Request $request, Slim\Http\Respons
     
 });
 
+$app->post('/login', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $email = $request->getParam('email');
+    $password = md5($request->getParam('password'));
+
+    $users = \Application\Model\User::where([
+                'email' => $email,
+                'password' => $password
+            ])->get();
+
+    if ($users->count()) {
+        $_SESSION['user'] = (array) $users->first();
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
+});
+
 $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(\Application\Model\PaymentType::all());
 });
