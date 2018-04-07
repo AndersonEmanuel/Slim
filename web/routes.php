@@ -341,13 +341,44 @@ $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $res
 });
 
 $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $user = new \Application\Model\User();
+    $user->name = $data['name'];
+    $user->username = $data['username'];
+    $user->email = $data['email'];
+    $user->password = $data['password'];
+    $user->profile = $data['profile'];
+    $user->cover = $data['cover'];
+
+    $user->save();
+
+    return $response->withJson($user);
 });
 
 $app->put('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $user = \Application\Model\User::find($id);
+    $user->name = $data['name'] ?: $user->name;
+    $user->username = $data['username'] ?: $user->username;
+    $user->email = $data['email'] ?: $user->email;
+    $user->password = $data['password'] ?: $user->password;
+    $user->profile = $data['profile'] ?: $user->profile;
+    $user->cover = $data['cover'] ?: $user->cover;
+
+    $user->save();
+
+    return $response->withJson($user);
 });
 
 $app->delete('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $user = \Application\Model\User::find($id);
+    $user->deactivation_date = $data['deactivation_date'] ?: $user->deactivation_date;
+    $user->disabled = $data['disabled'] ?: $user->disabled;
+
+    $user->save();
+
+    return $response->withStatus(200);
 });
