@@ -41,15 +41,42 @@ $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $
 });
 
 $app->post('/company', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $company = new \Application\Model\Company();
+    $company->name = $data['name'];
+    $company->email = $data['email'];
+    $company->phone = $data['phone'];
+    $company->postal_code = $data['postal_code'];
+
+    $company->save();
+
+    return $response->withJson($company);
 });
 
 $app->put('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $company = \Application\Model\Company::find($id);
+    $company->name = $data['name'] ?: $company->name;
+    $company->description = $data['email'] ?: $company->email;
+    $company->phone = $data['phone'] ?: $company->phone;
+    $company->postal_code = $data['postal_code'] ?: $company->postal_code;
     
+    $company->save();
+
+    return $response->withJson($product);
 });
 
 $app->delete('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $company = \Application\Model\Company::find($id);
+    $company->deactivation_date = $data['deactivation_date'] ?: $company->deactivation_date;
+    $company->disabled = $data['disabled'] ?: $company->disabled;
+
+    $company->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response $response) {
@@ -173,6 +200,7 @@ $app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Res
     $id = $args['id'];
     $data = $request->getParsedBody();
     $product = \Application\Model\Product::find($id);
+    $product->deactivation_date = $data['deactivation_date'] ?: $product->deactivation_date;
     $product->disabled = $data['disabled'] ?: $product->disabled;
 
     $product->save();
