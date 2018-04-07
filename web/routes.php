@@ -426,6 +426,11 @@ $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $res
     return $response->withJson(\Application\Model\User::all());
 });
 
+$app->get('/user/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    return $response->withJson(\Application\Model\User::find($id));
+});
+
 $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $data = $request->getParsedBody();
     $user = new \Application\Model\User();
