@@ -286,15 +286,42 @@ $app->get('/provider', function (Slim\Http\Request $request, Slim\Http\Response 
 });
 
 $app->post('/provider', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $provider = new \Application\Model\Provider();
+    $provider->name = $data['name'];
+    $provider->email = $data['email'];
+    $provider->phone = $data['phone'];
+    $provider->postal_code = $data['postal_code'];
+
+    $provider->save();
+
+    return $response->withJson($provider);
 });
 
 $app->put('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $provider = \Application\Model\Provider::find($id);
+    $provider->name = $data['name'] ?: $provider->name;
+    $provider->description = $data['email'] ?: $provider->email;
+    $provider->phone = $data['phone'] ?: $provider->phone;
+    $provider->postal_code = $data['postal_code'] ?: $provider->postal_code;
+
+    $provider->save();
+
+    return $response->withJson($provider);
 });
 
 $app->delete('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $provider = \Application\Model\Provider::find($id);
+    $provider->deactivation_date = $data['deactivation_date'] ?: $provider->deactivation_date;
+    $provider->disabled = $data['disabled'] ?: $provider->disabled;
+
+    $provider->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/sale', function (Slim\Http\Request $request, Slim\Http\Response $response) {
