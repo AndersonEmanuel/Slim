@@ -25,15 +25,38 @@ $app->get('/category', function (Slim\Http\Request $request, Slim\Http\Response 
 });
 
 $app->post('/category', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $category = new \Application\Model\Category();
+    $category->name = $data['name'];
+    $category->description = $data['description'];
+
+    $category->save();
+
+    return $response->withJson($category);
 });
 
 $app->put('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $category = \Application\Model\Category::find($id);
+    $category->name = $data['name'] ?: $category->name;
+    $category->description = $data['description'] ?: $category->description;
+
+    $category->save();
+
+    return $response->withJson($category);
 });
 
 $app->delete('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $category = \Application\Model\Category::find($id);
+    $category->deactivation_date = $data['deactivation_date'] ?: $category->deactivation_date;
+    $category->disabled = $data['disabled'] ?: $category->disabled;
+
+    $category->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $response) {
@@ -61,7 +84,7 @@ $app->put('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     $company->description = $data['email'] ?: $company->email;
     $company->phone = $data['phone'] ?: $company->phone;
     $company->postal_code = $data['postal_code'] ?: $company->postal_code;
-    
+
     $company->save();
 
     return $response->withJson($company);
@@ -104,7 +127,7 @@ $app->put('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     $customer->description = $data['email'] ?: $customer->email;
     $customer->phone = $data['phone'] ?: $customer->phone;
     $customer->postal_code = $data['postal_code'] ?: $customer->postal_code;
-    
+
     $customer->save();
 
     return $response->withJson($customer);
@@ -127,15 +150,38 @@ $app->get('/group', function (Slim\Http\Request $request, Slim\Http\Response $re
 });
 
 $app->post('/group', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $group = new \Application\Model\Group();
+    $group->name = $data['name'];
+    $group->description = $data['description'];
+
+    $group->save();
+
+    return $response->withJson($group);
 });
 
 $app->put('/group/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $group = \Application\Model\Group::find($id);
+    $group->name = $data['name'] ?: $group->name;
+    $group->description = $data['description'] ?: $group->description;
+
+    $group->save();
+
+    return $response->withJson($group);
 });
 
 $app->delete('/group/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $group = \Application\Model\Group::find($id);
+    $group->deactivation_date = $data['deactivation_date'] ?: $group->deactivation_date;
+    $group->disabled = $data['disabled'] ?: $group->disabled;
+
+    $group->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/log', function (Slim\Http\Request $request, Slim\Http\Response $response) {
