@@ -147,15 +147,31 @@ $app->get('/product', function (Slim\Http\Request $request, Slim\Http\Response $
 });
 
 $app->post('/product', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $product = new \Application\Model\Product();
+    $product->name = $data['name'];
+    $product->description = $data['description'];
+
+    $product->save();
 });
 
 $app->put('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $product = \Application\Model\Product::find($id);
+    $product->name = $data['name'] ?: $product->name;
+    $product->description = $data['description'] ?: $product->description;
+
+    $product->save();
 });
 
 $app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $product = \Application\Model\Product::find($id);
+    $product->disabled = $data['disabled'] ?: $product->disabled;
+
+    $product->save();
 });
 
 $app->get('/provider', function (Slim\Http\Request $request, Slim\Http\Response $response) {
