@@ -64,7 +64,7 @@ $app->put('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     
     $company->save();
 
-    return $response->withJson($product);
+    return $response->withJson($company);
 });
 
 $app->delete('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -84,15 +84,42 @@ $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response 
 });
 
 $app->post('/customer', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $customer = new \Application\Model\Company();
+    $customer->name = $data['name'];
+    $customer->email = $data['email'];
+    $customer->phone = $data['phone'];
+    $customer->postal_code = $data['postal_code'];
+
+    $customer->save();
+
+    return $response->withJson($customer);
 });
 
 $app->put('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $customer = \Application\Model\Customer::find($id);
+    $customer->name = $data['name'] ?: $customer->name;
+    $customer->description = $data['email'] ?: $customer->email;
+    $customer->phone = $data['phone'] ?: $customer->phone;
+    $customer->postal_code = $data['postal_code'] ?: $customer->postal_code;
     
+    $customer->save();
+
+    return $response->withJson($customer);
 });
 
 $app->delete('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $customer = \Application\Model\Customer::find($id);
+    $customer->deactivation_date = $data['deactivation_date'] ?: $customer->deactivation_date;
+    $customer->disabled = $data['disabled'] ?: $customer->disabled;
+
+    $customer->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/group', function (Slim\Http\Request $request, Slim\Http\Response $response) {
