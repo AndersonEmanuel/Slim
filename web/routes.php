@@ -81,7 +81,7 @@ $app->put('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     $data = $request->getParsedBody();
     $company = \Application\Model\Company::find($id);
     $company->name = $data['name'] ?: $company->name;
-    $company->description = $data['email'] ?: $company->email;
+    $company->email = $data['email'] ?: $company->email;
     $company->phone = $data['phone'] ?: $company->phone;
     $company->postal_code = $data['postal_code'] ?: $company->postal_code;
 
@@ -124,7 +124,7 @@ $app->put('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     $data = $request->getParsedBody();
     $customer = \Application\Model\Customer::find($id);
     $customer->name = $data['name'] ?: $customer->name;
-    $customer->description = $data['email'] ?: $customer->email;
+    $customer->email = $data['email'] ?: $customer->email;
     $customer->phone = $data['phone'] ?: $customer->phone;
     $customer->postal_code = $data['postal_code'] ?: $customer->postal_code;
 
@@ -189,7 +189,14 @@ $app->get('/log', function (Slim\Http\Request $request, Slim\Http\Response $resp
 });
 
 $app->post('/log', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $company = new \Application\Model\Log();
+    $company->description = $data['description'];
+    $company->source = $data['source'];
+
+    $company->save();
+
+    return $response->withJson($company);
 });
 
 $app->put('/log/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -205,15 +212,42 @@ $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Respon
 });
 
 $app->post('/paymenttype', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $data = $request->getParsedBody();
+    $paymenttype = new \Application\Model\PaymentType();
+    $paymenttype->name = $data['name'];
+    $paymenttype->description = $data['description'];
+    $paymenttype->allows_discount = $data['allows_discount'];
+    $paymenttype->allows_installment = $data['allows_installment'];
+
+    $paymenttype->save();
+
+    return $response->withJson($paymenttype);
 });
 
 $app->put('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $paymenttype = \Application\Model\PaymentType::find($id);
+    $paymenttype->name = $data['name'] ?: $paymenttype->name;
+    $paymenttype->description = $data['description'] ?: $paymenttype->description;
+    $paymenttype->allows_discount = $data['allows_discount'] ?: $paymenttype->allows_discount;
+    $paymenttype->allows_installment = $data['allows_installment'] ?: $paymenttype->allows_installment;
+
+    $paymenttype->save();
+
+    return $response->withJson($paymenttype);
 });
 
 $app->delete('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $paymenttype = \Application\Model\PaymentType::find($id);
+    $paymenttype->deactivation_date = $data['deactivation_date'] ?: $paymenttype->deactivation_date;
+    $paymenttype->disabled = $data['disabled'] ?: $paymenttype->disabled;
+
+    $paymenttype->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/price', function (Slim\Http\Request $request, Slim\Http\Response $response) {
@@ -303,7 +337,7 @@ $app->put('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     $data = $request->getParsedBody();
     $provider = \Application\Model\Provider::find($id);
     $provider->name = $data['name'] ?: $provider->name;
-    $provider->description = $data['email'] ?: $provider->email;
+    $provider->email = $data['email'] ?: $provider->email;
     $provider->phone = $data['phone'] ?: $provider->phone;
     $provider->postal_code = $data['postal_code'] ?: $provider->postal_code;
 
