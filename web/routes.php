@@ -24,6 +24,11 @@ $app->get('/category', function (Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson(\Application\Model\Category::all());
 });
 
+$app->get('/category/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    return $response->withJson(\Application\Model\Category::find($id));
+});
+
 $app->post('/category', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $data = $request->getParsedBody();
     $category = new \Application\Model\Category();
@@ -61,6 +66,11 @@ $app->delete('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Re
 
 $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(\Application\Model\Company::all());
+});
+
+$app->get('/company/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    return $response->withJson(\Application\Model\Company::find($id));
 });
 
 $app->post('/company', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -104,6 +114,11 @@ $app->delete('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Res
 
 $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(\Application\Model\Customer::all());
+});
+
+$app->get('/customer/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    return $response->withJson(\Application\Model\Customer::find($id));
 });
 
 $app->post('/customer', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -188,6 +203,11 @@ $app->get('/log', function (Slim\Http\Request $request, Slim\Http\Response $resp
     return $response->withJson(\Application\Model\Log::all());
 });
 
+$app->get('/log/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    return $response->withJson(\Application\Model\Log::find($id));
+});
+
 $app->post('/log', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $data = $request->getParsedBody();
     $company = new \Application\Model\Log();
@@ -209,6 +229,11 @@ $app->delete('/log/{id}', function(Slim\Http\Request $request, Slim\Http\Respons
 
 $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(\Application\Model\PaymentType::all());
+});
+
+$app->get('/paymenttype/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+    $id = $args['id'];
+    return $response->withJson(\Application\Model\PaymentType::find($id));
 });
 
 $app->post('/paymenttype', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
