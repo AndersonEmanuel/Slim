@@ -153,6 +153,8 @@ $app->post('/product', function(Slim\Http\Request $request, Slim\Http\Response $
     $product->description = $data['description'];
 
     $product->save();
+
+    return $response->withJson($product);
 });
 
 $app->put('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -163,6 +165,8 @@ $app->put('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     $product->description = $data['description'] ?: $product->description;
 
     $product->save();
+
+    return $response->withJson($product);
 });
 
 $app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -172,6 +176,8 @@ $app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Res
     $product->disabled = $data['disabled'] ?: $product->disabled;
 
     $product->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/provider', function (Slim\Http\Request $request, Slim\Http\Response $response) {
