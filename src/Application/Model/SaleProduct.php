@@ -15,6 +15,9 @@ use \Illuminate\Database\Eloquent\Model;
  */
 class SaleProduct extends Model {
 
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
+
     protected $table = 'sale_product';
 
 }
