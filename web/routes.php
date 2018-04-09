@@ -432,7 +432,7 @@ $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $res
     $user->name = $data['name'];
     $user->username = $data['username'];
     $user->email = $data['email'];
-    $user->password = $data['password'];
+    $user->password = md5($data['password']);
     $user->profile = $data['profile'];
     $user->cover = $data['cover'];
 
@@ -448,7 +448,7 @@ $app->put('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Response 
     $user->name = $data['name'] ?: $user->name;
     $user->username = $data['username'] ?: $user->username;
     $user->email = $data['email'] ?: $user->email;
-    $user->password = $data['password'] ?: $user->password;
+    $user->password = md5($data['password']) ?: $user->password;
     $user->profile = $data['profile'] ?: $user->profile;
     $user->cover = $data['cover'] ?: $user->cover;
 
