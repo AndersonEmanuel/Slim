@@ -1,7 +1,7 @@
 <?php
 
 $app->get('/category', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Category::all());
+    return $response->withJson(\Application\Model\Category::where(['disabled' => false])->get());
 });
 
 $app->get('/category/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -45,7 +45,7 @@ $app->delete('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Re
 });
 
 $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Company::all());
+    return $response->withJson(\Application\Model\Company::where(['disabled' => false])->get());
 });
 
 $app->get('/company/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -93,7 +93,7 @@ $app->delete('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Res
 });
 
 $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Customer::all());
+    return $response->withJson(\Application\Model\Customer::where(['disabled' => false])->get());
 });
 
 $app->get('/customer/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -141,7 +141,7 @@ $app->delete('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Re
 });
 
 $app->get('/group', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Group::all());
+    return $response->withJson(\Application\Model\Group::where(['disabled' => false])->get());
 });
 
 $app->post('/group', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -213,7 +213,8 @@ $app->post('/login', function (Slim\Http\Request $request, Slim\Http\Response $r
 
     $users = \Application\Model\User::where([
                 'email' => $email,
-                'password' => $password
+                'password' => $password,
+                'disabled' => false
             ])->get();
 
     if ($users->count()) {
@@ -223,7 +224,7 @@ $app->post('/login', function (Slim\Http\Request $request, Slim\Http\Response $r
 });
 
 $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\PaymentType::all());
+    return $response->withJson(\Application\Model\PaymentType::where(['disabled' => false])->get());
 });
 
 $app->get('/paymenttype/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -336,7 +337,7 @@ $app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Res
 });
 
 $app->get('/provider', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Provider::all());
+    return $response->withJson(\Application\Model\Provider::where(['disabled' => false])->get());
 });
 
 $app->post('/provider', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -402,7 +403,7 @@ $app->delete('/sale/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
 });
 
 $app->get('/stock', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Stock::all());
+    return $response->withJson(\Application\Model\Stock::where(['disabled' => false])->get());
 });
 
 $app->post('/stock', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -418,7 +419,7 @@ $app->delete('/stock/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
 });
 
 $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\User::all());
+    return $response->withJson(\Application\Model\User::where(['disabled' => false])->get());
 });
 
 $app->get('/user/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
