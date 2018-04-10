@@ -36,7 +36,7 @@ $app->delete('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Re
     $id = $args['id'];
     $data = $request->getParsedBody();
     $category = \Application\Model\Category::find($id);
-    $category->deactivation_date = $data['deactivation_date'] ?: $category->deactivation_date;
+    $category->deactivation_date = date("Y-m-d H:i:s") ?: $category->deactivation_date;
     $category->disabled = $data['disabled'] ?: $category->disabled;
 
     $category->save();
@@ -84,7 +84,7 @@ $app->delete('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Res
     $id = $args['id'];
     $data = $request->getParsedBody();
     $company = \Application\Model\Company::find($id);
-    $company->deactivation_date = $data['deactivation_date'] ?: $company->deactivation_date;
+    $company->deactivation_date = date("Y-m-d H:i:s") ?: $company->deactivation_date;
     $company->disabled = $data['disabled'] ?: $company->disabled;
 
     $company->save();
@@ -132,7 +132,7 @@ $app->delete('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Re
     $id = $args['id'];
     $data = $request->getParsedBody();
     $customer = \Application\Model\Customer::find($id);
-    $customer->deactivation_date = $data['deactivation_date'] ?: $customer->deactivation_date;
+    $customer->deactivation_date = date("Y-m-d H:i:s") ?: $customer->deactivation_date;
     $customer->disabled = $data['disabled'] ?: $customer->disabled;
 
     $customer->save();
@@ -171,7 +171,7 @@ $app->delete('/group/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     $id = $args['id'];
     $data = $request->getParsedBody();
     $group = \Application\Model\Group::find($id);
-    $group->deactivation_date = $data['deactivation_date'] ?: $group->deactivation_date;
+    $group->deactivation_date = date("Y-m-d H:i:s") ?: $group->deactivation_date;
     $group->disabled = $data['disabled'] ?: $group->disabled;
 
     $group->save();
@@ -263,7 +263,7 @@ $app->delete('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http
     $id = $args['id'];
     $data = $request->getParsedBody();
     $paymenttype = \Application\Model\PaymentType::find($id);
-    $paymenttype->deactivation_date = $data['deactivation_date'] ?: $paymenttype->deactivation_date;
+    $paymenttype->deactivation_date = date("Y-m-d H:i:s") ?: $paymenttype->deactivation_date;
     $paymenttype->disabled = $data['disabled'] ?: $paymenttype->disabled;
 
     $paymenttype->save();
@@ -289,7 +289,15 @@ $app->put('/price/{id}', function(Slim\Http\Request $request, Slim\Http\Response
 });
 
 $app->delete('/price/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $provider = \Application\Model\Price::find($id);
+    $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
+    $provider->disabled = $data['disabled'] ?: $provider->disabled;
+
+    $provider->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/product', function (Slim\Http\Request $request, Slim\Http\Response $response) {
@@ -328,7 +336,7 @@ $app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Res
     $id = $args['id'];
     $data = $request->getParsedBody();
     $product = \Application\Model\Product::find($id);
-    $product->deactivation_date = $data['deactivation_date'] ?: $product->deactivation_date;
+    $product->deactivation_date = date("Y-m-d H:i:s") ?: $product->deactivation_date;
     $product->disabled = $data['disabled'] ?: $product->disabled;
 
     $product->save();
@@ -371,7 +379,7 @@ $app->delete('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Re
     $id = $args['id'];
     $data = $request->getParsedBody();
     $provider = \Application\Model\Provider::find($id);
-    $provider->deactivation_date = $data['deactivation_date'] ?: $provider->deactivation_date;
+    $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
     $provider->disabled = $data['disabled'] ?: $provider->disabled;
 
     $provider->save();
@@ -399,7 +407,15 @@ $app->put('/sale/{id}', function(Slim\Http\Request $request, Slim\Http\Response 
 });
 
 $app->delete('/sale/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $provider = \Application\Model\Sale::find($id);
+    $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
+    $provider->disabled = $data['disabled'] ?: $provider->disabled;
+
+    $provider->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/stock', function (Slim\Http\Request $request, Slim\Http\Response $response) {
@@ -415,7 +431,15 @@ $app->put('/stock/{id}', function(Slim\Http\Request $request, Slim\Http\Response
 });
 
 $app->delete('/stock/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
-    
+    $id = $args['id'];
+    $data = $request->getParsedBody();
+    $provider = \Application\Model\Stock::find($id);
+    $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
+    $provider->disabled = $data['disabled'] ?: $provider->disabled;
+
+    $provider->save();
+
+    return $response->withStatus(200);
 });
 
 $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $response) {
@@ -462,7 +486,7 @@ $app->delete('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     $id = $args['id'];
     $data = $request->getParsedBody();
     $user = \Application\Model\User::find($id);
-    $user->deactivation_date = $data['deactivation_date'] ?: $user->deactivation_date;
+    $user->deactivation_date = date("Y-m-d H:i:s") ?: $user->deactivation_date;
     $user->disabled = $data['disabled'] ?: $user->disabled;
 
     $user->save();
