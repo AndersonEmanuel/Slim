@@ -4,7 +4,7 @@ $app->get('/category', function (Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson(\Application\Model\Category::where(['disabled' => false])->get());
 });
 
-$app->get('/category/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->get('/category/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     return $response->withJson(\Application\Model\Category::find($id));
 });
@@ -20,7 +20,7 @@ $app->post('/category', function(Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson($category);
 });
 
-$app->put('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/category/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $category = \Application\Model\Category::find($id);
@@ -32,7 +32,7 @@ $app->put('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     return $response->withJson($category);
 });
 
-$app->delete('/category/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/category/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $category = \Application\Model\Category::find($id);
@@ -48,7 +48,7 @@ $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $
     return $response->withJson(\Application\Model\Company::where(['disabled' => false])->get());
 });
 
-$app->get('/company/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->get('/company/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     return $response->withJson(\Application\Model\Company::find($id));
 });
@@ -66,7 +66,7 @@ $app->post('/company', function(Slim\Http\Request $request, Slim\Http\Response $
     return $response->withJson($company);
 });
 
-$app->put('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/company/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $company = \Application\Model\Company::find($id);
@@ -80,7 +80,7 @@ $app->put('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     return $response->withJson($company);
 });
 
-$app->delete('/company/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/company/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $company = \Application\Model\Company::find($id);
@@ -96,7 +96,7 @@ $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson(\Application\Model\Customer::where(['disabled' => false])->get());
 });
 
-$app->get('/customer/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->get('/customer/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     return $response->withJson(\Application\Model\Customer::find($id));
 });
@@ -114,7 +114,7 @@ $app->post('/customer', function(Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson($customer);
 });
 
-$app->put('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/customer/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $customer = \Application\Model\Customer::find($id);
@@ -128,7 +128,7 @@ $app->put('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     return $response->withJson($customer);
 });
 
-$app->delete('/customer/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/customer/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $customer = \Application\Model\Customer::find($id);
@@ -155,7 +155,7 @@ $app->post('/group', function(Slim\Http\Request $request, Slim\Http\Response $re
     return $response->withJson($group);
 });
 
-$app->put('/group/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/group/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $group = \Application\Model\Group::find($id);
@@ -167,7 +167,7 @@ $app->put('/group/{id}', function(Slim\Http\Request $request, Slim\Http\Response
     return $response->withJson($group);
 });
 
-$app->delete('/group/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/group/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $group = \Application\Model\Group::find($id);
@@ -183,7 +183,7 @@ $app->get('/log', function (Slim\Http\Request $request, Slim\Http\Response $resp
     return $response->withJson(\Application\Model\Log::all());
 });
 
-$app->get('/log/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->get('/log/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     return $response->withJson(\Application\Model\Log::find($id));
 });
@@ -199,11 +199,11 @@ $app->post('/log', function(Slim\Http\Request $request, Slim\Http\Response $resp
     return $response->withJson($company);
 });
 
-$app->put('/log/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/log/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     
 });
 
-$app->delete('/log/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/log/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     
 });
 
@@ -227,7 +227,7 @@ $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Respon
     return $response->withJson(\Application\Model\PaymentType::where(['disabled' => false])->get());
 });
 
-$app->get('/paymenttype/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->get('/paymenttype/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     return $response->withJson(\Application\Model\PaymentType::find($id));
 });
@@ -245,7 +245,7 @@ $app->post('/paymenttype', function(Slim\Http\Request $request, Slim\Http\Respon
     return $response->withJson($paymenttype);
 });
 
-$app->put('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/paymenttype/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $paymenttype = \Application\Model\PaymentType::find($id);
@@ -259,7 +259,7 @@ $app->put('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http\Re
     return $response->withJson($paymenttype);
 });
 
-$app->delete('/paymenttype/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/paymenttype/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $paymenttype = \Application\Model\PaymentType::find($id);
@@ -284,11 +284,11 @@ $app->post('/price', function(Slim\Http\Request $request, Slim\Http\Response $re
     
 });
 
-$app->put('/price/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/price/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     
 });
 
-$app->delete('/price/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/price/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $provider = \Application\Model\Price::find($id);
@@ -320,7 +320,7 @@ $app->post('/product', function(Slim\Http\Request $request, Slim\Http\Response $
     return $response->withJson($product);
 });
 
-$app->put('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/product/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $product = \Application\Model\Product::find($id);
@@ -332,7 +332,7 @@ $app->put('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Respon
     return $response->withJson($product);
 });
 
-$app->delete('/product/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/product/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $product = \Application\Model\Product::find($id);
@@ -361,7 +361,7 @@ $app->post('/provider', function(Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson($provider);
 });
 
-$app->put('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/provider/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $provider = \Application\Model\Provider::find($id);
@@ -375,7 +375,7 @@ $app->put('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Respo
     return $response->withJson($provider);
 });
 
-$app->delete('/provider/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/provider/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $provider = \Application\Model\Provider::find($id);
@@ -402,11 +402,11 @@ $app->post('/sale', function(Slim\Http\Request $request, Slim\Http\Response $res
     
 });
 
-$app->put('/sale/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/sale/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     
 });
 
-$app->delete('/sale/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/sale/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $provider = \Application\Model\Sale::find($id);
@@ -426,11 +426,11 @@ $app->post('/stock', function(Slim\Http\Request $request, Slim\Http\Response $re
     
 });
 
-$app->put('/stock/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/stock/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     
 });
 
-$app->delete('/stock/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/stock/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $provider = \Application\Model\Stock::find($id);
@@ -446,7 +446,7 @@ $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $res
     return $response->withJson(\Application\Model\User::where(['disabled' => false])->get());
 });
 
-$app->get('/user/{id}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->get('/user/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     return $response->withJson(\Application\Model\User::find($id));
 });
@@ -466,7 +466,7 @@ $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $res
     return $response->withJson($user);
 });
 
-$app->put('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->put('/user/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $user = \Application\Model\User::find($id);
@@ -482,7 +482,7 @@ $app->put('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Response 
     return $response->withJson($user);
 });
 
-$app->delete('/user/{id}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
+$app->delete('/user/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
     $user = \Application\Model\User::find($id);
