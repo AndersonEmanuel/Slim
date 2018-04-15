@@ -7,6 +7,6 @@ use Symfony\Component\Console\Application;
 
 $application = new Application;
 
-$application->add(new \Application\Commands\ServerCommand);
+$application->add(new \Application\Command\ServerCommand);
 
 $application->run();

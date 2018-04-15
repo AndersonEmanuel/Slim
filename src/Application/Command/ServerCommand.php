@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Commands;
+namespace Application\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
