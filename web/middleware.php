@@ -1,3 +1,3 @@
 <?php
 
-//$app->add(new \Application\Middleware\Authentication());
+$app->add(new \Application\Middleware\AccessControlOrigin());
