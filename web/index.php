@@ -29,7 +29,7 @@ require __DIR__ . '/../web/dependencies.php';
 
 $app = new \Application\Application($container);
 
-//require __DIR__ . '/../web/middleware.php';
+require __DIR__ . '/../web/middleware.php';
 
 require __DIR__ . '/../web/routes.php';
 
