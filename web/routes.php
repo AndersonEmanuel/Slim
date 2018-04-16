@@ -6,7 +6,7 @@ $app->get('/category', function (Slim\Http\Request $request, Slim\Http\Response 
 
 $app->get('/category/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Category::find($id));
+    return $response->withJson(\Application\Model\Category::find($id) ?: []);
 });
 
 $app->post('/category', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -50,7 +50,7 @@ $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $
 
 $app->get('/company/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Company::find($id));
+    return $response->withJson(\Application\Model\Company::find($id) ?: []);
 });
 
 $app->post('/company', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -98,7 +98,7 @@ $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response 
 
 $app->get('/customer/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Customer::find($id));
+    return $response->withJson(\Application\Model\Customer::find($id) ?: []);
 });
 
 $app->post('/customer', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -185,7 +185,7 @@ $app->get('/log', function (Slim\Http\Request $request, Slim\Http\Response $resp
 
 $app->get('/log/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Log::find($id));
+    return $response->withJson(\Application\Model\Log::find($id) ?: []);
 });
 
 $app->post('/log', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -229,7 +229,7 @@ $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Respon
 
 $app->get('/paymenttype/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\PaymentType::find($id));
+    return $response->withJson(\Application\Model\PaymentType::find($id) ?: []);
 });
 
 $app->post('/paymenttype', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -448,7 +448,7 @@ $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $res
 
 $app->get('/user/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\User::find($id));
+    return $response->withJson(\Application\Model\User::find($id) ?: []);
 });
 
 $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
