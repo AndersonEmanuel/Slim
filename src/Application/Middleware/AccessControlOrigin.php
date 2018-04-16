@@ -25,7 +25,7 @@ class AccessControlOrigin {
      * 
      * @return callable $response
      */
-    public function __invoke(Request $request, Response $response, callable $next): callable {
+    public function __invoke(Request $request, Response $response, callable $next) {
         return $next($request, $response)
                         ->withHeader('Access-Control-Allow-Origin', '*')
                         ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
