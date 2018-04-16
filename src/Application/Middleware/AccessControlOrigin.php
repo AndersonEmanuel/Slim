@@ -22,8 +22,6 @@ class AccessControlOrigin {
      * @param Request $request
      * @param Response $response
      * @param callable $next
-     * 
-     * @return callable $response
      */
     public function __invoke(Request $request, Response $response, callable $next) {
         return $next($request, $response)
