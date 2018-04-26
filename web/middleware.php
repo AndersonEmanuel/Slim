@@ -1,4 +1,4 @@
 <?php
 
-$app->add(new \Application\Middleware\AccessControlOrigin());
-$app->add(new \Application\Middleware\HttpBasicAuthentication());
+$app->add(new \Application\Http\Middleware\AccessControlOrigin());
+$app->add(new \Application\Http\Middleware\HttpBasicAuthentication());
