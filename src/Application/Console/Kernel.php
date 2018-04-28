@@ -14,25 +14,13 @@ namespace Application\Console;
 class Kernel {
 
     /**
-     *
-     * @var type 
-     */
-    protected $commands = [];
-
-    /**
-     *
-     * @var type 
-     */
-    protected $defaultCommands = [
-        \Application\Console\Command\ServerCommand::class,
-    ];
-
-    /**
      * 
      * @return type
      */
     public function getCommands() {
-        return array_merge($this->commands, $this->defaultCommands);
+        return array(
+            \Application\Console\Command\ServerCommand::class
+        );
     }
 
 }
