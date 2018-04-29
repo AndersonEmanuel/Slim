@@ -3,6 +3,7 @@
 ## Getting Started
 
 ### Installing
+
 #### Clone the project
 ```
 git clone https://github.com/AndersonEmanuel/Slim.git your-project-name
