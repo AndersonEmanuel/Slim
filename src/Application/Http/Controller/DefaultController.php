@@ -23,7 +23,7 @@ class DefaultController {
      * @return Response
      */
     public function __invoke(Request $request, Response $response): Response {
-
+        
         return $response;
     }
 
