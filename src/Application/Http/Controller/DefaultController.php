@@ -11,7 +11,7 @@ use Slim\Http\Response;
  * 
  * @package Application
  * @author Anderson Emanuel <contato@andersonemanuel.com.br>
- * @copyright (c) 2017, Anderson Emanuel
+ * @copyright (c) 2018, Anderson Emanuel
  * @version 1.0
  */
 class DefaultController {
