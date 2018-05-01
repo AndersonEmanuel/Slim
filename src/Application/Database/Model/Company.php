@@ -1,23 +1,23 @@
 <?php
 
-namespace Application\Model;
+namespace Application\Database\Model;
 
 use \Illuminate\Database\Eloquent\Model;
 
 /**
  * 
- * Description of Category
+ * Description of Company
  * 
  * @package Application
  * @author Anderson Emanuel <contato@andersonemanuel.com.br>
  * @copyright (c) 2017, Anderson Emanuel
  * @version 1.0
  */
-class Category extends Model {
+class Company extends Model {
 
     const CREATED_AT = 'insertion_date';
     const UPDATED_AT = 'edition_date';
-    
-    protected $table = 'category';
+
+    protected $table = 'company';
 
 }

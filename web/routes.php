@@ -1,17 +1,17 @@
 <?php
 
 $app->get('/category', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Category::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\Category::where(['disabled' => false])->get());
 });
 
 $app->get('/category/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Category::find($id) ?: []);
+    return $response->withJson(\Application\Database\Model\Category::find($id) ?: []);
 });
 
 $app->post('/category', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $category = new \Application\Model\Category();
+    $category = new \Application\Database\Model\Category();
     $category->name = $data['name'];
     $category->description = $data['description'];
 
@@ -23,7 +23,7 @@ $app->post('/category', function(Slim\Http\Request $request, Slim\Http\Response 
 $app->put('/category/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $category = \Application\Model\Category::find($id);
+    $category = \Application\Database\Model\Category::find($id);
     $category->name = $data['name'] ?: $category->name;
     $category->description = $data['description'] ?: $category->description;
 
@@ -35,7 +35,7 @@ $app->put('/category/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Htt
 $app->delete('/category/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $category = \Application\Model\Category::find($id);
+    $category = \Application\Database\Model\Category::find($id);
     $category->deactivation_date = date("Y-m-d H:i:s") ?: $category->deactivation_date;
     $category->disabled = $data['disabled'] ?: $category->disabled;
 
@@ -45,17 +45,17 @@ $app->delete('/category/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\
 });
 
 $app->get('/company', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Company::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\Company::where(['disabled' => false])->get());
 });
 
 $app->get('/company/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Company::find($id) ?: []);
+    return $response->withJson(\Application\Database\Model\Company::find($id) ?: []);
 });
 
 $app->post('/company', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $company = new \Application\Model\Company();
+    $company = new \Application\Database\Model\Company();
     $company->name = $data['name'];
     $company->email = $data['email'];
     $company->phone = $data['phone'];
@@ -69,7 +69,7 @@ $app->post('/company', function(Slim\Http\Request $request, Slim\Http\Response $
 $app->put('/company/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $company = \Application\Model\Company::find($id);
+    $company = \Application\Database\Model\Company::find($id);
     $company->name = $data['name'] ?: $company->name;
     $company->email = $data['email'] ?: $company->email;
     $company->phone = $data['phone'] ?: $company->phone;
@@ -83,7 +83,7 @@ $app->put('/company/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http
 $app->delete('/company/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $company = \Application\Model\Company::find($id);
+    $company = \Application\Database\Model\Company::find($id);
     $company->deactivation_date = date("Y-m-d H:i:s") ?: $company->deactivation_date;
     $company->disabled = $data['disabled'] ?: $company->disabled;
 
@@ -93,17 +93,17 @@ $app->delete('/company/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\H
 });
 
 $app->get('/customer', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Customer::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\Customer::where(['disabled' => false])->get());
 });
 
 $app->get('/customer/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Customer::find($id) ?: []);
+    return $response->withJson(\Application\Database\Model\Customer::find($id) ?: []);
 });
 
 $app->post('/customer', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $customer = new \Application\Model\Company();
+    $customer = new \Application\Database\Model\Company();
     $customer->name = $data['name'];
     $customer->email = $data['email'];
     $customer->phone = $data['phone'];
@@ -117,7 +117,7 @@ $app->post('/customer', function(Slim\Http\Request $request, Slim\Http\Response 
 $app->put('/customer/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $customer = \Application\Model\Customer::find($id);
+    $customer = \Application\Database\Model\Customer::find($id);
     $customer->name = $data['name'] ?: $customer->name;
     $customer->email = $data['email'] ?: $customer->email;
     $customer->phone = $data['phone'] ?: $customer->phone;
@@ -131,7 +131,7 @@ $app->put('/customer/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Htt
 $app->delete('/customer/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $customer = \Application\Model\Customer::find($id);
+    $customer = \Application\Database\Model\Customer::find($id);
     $customer->deactivation_date = date("Y-m-d H:i:s") ?: $customer->deactivation_date;
     $customer->disabled = $data['disabled'] ?: $customer->disabled;
 
@@ -141,12 +141,12 @@ $app->delete('/customer/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\
 });
 
 $app->get('/group', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Group::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\Group::where(['disabled' => false])->get());
 });
 
 $app->post('/group', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $group = new \Application\Model\Group();
+    $group = new \Application\Database\Model\Group();
     $group->name = $data['name'];
     $group->description = $data['description'];
 
@@ -158,7 +158,7 @@ $app->post('/group', function(Slim\Http\Request $request, Slim\Http\Response $re
 $app->put('/group/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $group = \Application\Model\Group::find($id);
+    $group = \Application\Database\Model\Group::find($id);
     $group->name = $data['name'] ?: $group->name;
     $group->description = $data['description'] ?: $group->description;
 
@@ -170,7 +170,7 @@ $app->put('/group/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\R
 $app->delete('/group/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $group = \Application\Model\Group::find($id);
+    $group = \Application\Database\Model\Group::find($id);
     $group->deactivation_date = date("Y-m-d H:i:s") ?: $group->deactivation_date;
     $group->disabled = $data['disabled'] ?: $group->disabled;
 
@@ -180,17 +180,17 @@ $app->delete('/group/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Htt
 });
 
 $app->get('/log', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Log::all());
+    return $response->withJson(\Application\Database\Model\Log::all());
 });
 
 $app->get('/log/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\Log::find($id) ?: []);
+    return $response->withJson(\Application\Database\Model\Log::find($id) ?: []);
 });
 
 $app->post('/log', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $company = new \Application\Model\Log();
+    $company = new \Application\Database\Model\Log();
     $company->description = $data['description'];
     $company->source = $data['source'];
 
@@ -211,7 +211,7 @@ $app->post('/login', function (Slim\Http\Request $request, Slim\Http\Response $r
     $email = $request->getParam('email');
     $password = md5($request->getParam('password'));
 
-    $users = \Application\Model\User::where([
+    $users = \Application\Database\Model\User::where([
                 'email' => $email,
                 'password' => $password,
                 'disabled' => false
@@ -224,17 +224,17 @@ $app->post('/login', function (Slim\Http\Request $request, Slim\Http\Response $r
 });
 
 $app->get('/paymenttype', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\PaymentType::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\PaymentType::where(['disabled' => false])->get());
 });
 
 $app->get('/paymenttype/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\PaymentType::find($id) ?: []);
+    return $response->withJson(\Application\Database\Model\PaymentType::find($id) ?: []);
 });
 
 $app->post('/paymenttype', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $paymenttype = new \Application\Model\PaymentType();
+    $paymenttype = new \Application\Database\Model\PaymentType();
     $paymenttype->name = $data['name'];
     $paymenttype->description = $data['description'];
     $paymenttype->allows_discount = $data['allows_discount'];
@@ -248,7 +248,7 @@ $app->post('/paymenttype', function(Slim\Http\Request $request, Slim\Http\Respon
 $app->put('/paymenttype/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $paymenttype = \Application\Model\PaymentType::find($id);
+    $paymenttype = \Application\Database\Model\PaymentType::find($id);
     $paymenttype->name = $data['name'] ?: $paymenttype->name;
     $paymenttype->description = $data['description'] ?: $paymenttype->description;
     $paymenttype->allows_discount = $data['allows_discount'] ?: $paymenttype->allows_discount;
@@ -262,7 +262,7 @@ $app->put('/paymenttype/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\
 $app->delete('/paymenttype/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $paymenttype = \Application\Model\PaymentType::find($id);
+    $paymenttype = \Application\Database\Model\PaymentType::find($id);
     $paymenttype->deactivation_date = date("Y-m-d H:i:s") ?: $paymenttype->deactivation_date;
     $paymenttype->disabled = $data['disabled'] ?: $paymenttype->disabled;
 
@@ -273,7 +273,7 @@ $app->delete('/paymenttype/{id:[0-9]+}', function(Slim\Http\Request $request, Sl
 
 $app->get('/price', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(
-                    \Application\Model\Price::
+                    \Application\Database\Model\Price::
                             with('product')
                             ->with('paymentType')
                             ->get()
@@ -291,7 +291,7 @@ $app->put('/price/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\R
 $app->delete('/price/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $provider = \Application\Model\Price::find($id);
+    $provider = \Application\Database\Model\Price::find($id);
     $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
     $provider->disabled = $data['disabled'] ?: $provider->disabled;
 
@@ -302,7 +302,7 @@ $app->delete('/price/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Htt
 
 $app->get('/product', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(
-                    \Application\Model\Product::
+                    \Application\Database\Model\Product::
                             with('productStock')
                             ->with('productPrice')
                             ->get()
@@ -311,7 +311,7 @@ $app->get('/product', function (Slim\Http\Request $request, Slim\Http\Response $
 
 $app->post('/product', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $product = new \Application\Model\Product();
+    $product = new \Application\Database\Model\Product();
     $product->name = $data['name'];
     $product->description = $data['description'];
 
@@ -323,7 +323,7 @@ $app->post('/product', function(Slim\Http\Request $request, Slim\Http\Response $
 $app->put('/product/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $product = \Application\Model\Product::find($id);
+    $product = \Application\Database\Model\Product::find($id);
     $product->name = $data['name'] ?: $product->name;
     $product->description = $data['description'] ?: $product->description;
 
@@ -335,7 +335,7 @@ $app->put('/product/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http
 $app->delete('/product/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $product = \Application\Model\Product::find($id);
+    $product = \Application\Database\Model\Product::find($id);
     $product->deactivation_date = date("Y-m-d H:i:s") ?: $product->deactivation_date;
     $product->disabled = $data['disabled'] ?: $product->disabled;
 
@@ -345,12 +345,12 @@ $app->delete('/product/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\H
 });
 
 $app->get('/provider', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Provider::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\Provider::where(['disabled' => false])->get());
 });
 
 $app->post('/provider', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $provider = new \Application\Model\Provider();
+    $provider = new \Application\Database\Model\Provider();
     $provider->name = $data['name'];
     $provider->email = $data['email'];
     $provider->phone = $data['phone'];
@@ -364,7 +364,7 @@ $app->post('/provider', function(Slim\Http\Request $request, Slim\Http\Response 
 $app->put('/provider/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $provider = \Application\Model\Provider::find($id);
+    $provider = \Application\Database\Model\Provider::find($id);
     $provider->name = $data['name'] ?: $provider->name;
     $provider->email = $data['email'] ?: $provider->email;
     $provider->phone = $data['phone'] ?: $provider->phone;
@@ -378,7 +378,7 @@ $app->put('/provider/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Htt
 $app->delete('/provider/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $provider = \Application\Model\Provider::find($id);
+    $provider = \Application\Database\Model\Provider::find($id);
     $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
     $provider->disabled = $data['disabled'] ?: $provider->disabled;
 
@@ -389,7 +389,7 @@ $app->delete('/provider/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\
 
 $app->get('/sale', function (Slim\Http\Request $request, Slim\Http\Response $response) {
     return $response->withJson(
-                    \Application\Model\Sale::
+                    \Application\Database\Model\Sale::
                             with('customer')
                             ->with('paymentType')
                             ->with('user')
@@ -409,7 +409,7 @@ $app->put('/sale/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Re
 $app->delete('/sale/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $provider = \Application\Model\Sale::find($id);
+    $provider = \Application\Database\Model\Sale::find($id);
     $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
     $provider->disabled = $data['disabled'] ?: $provider->disabled;
 
@@ -419,7 +419,7 @@ $app->delete('/sale/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http
 });
 
 $app->get('/stock', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\Stock::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\Stock::where(['disabled' => false])->get());
 });
 
 $app->post('/stock', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
@@ -433,7 +433,7 @@ $app->put('/stock/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\R
 $app->delete('/stock/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $provider = \Application\Model\Stock::find($id);
+    $provider = \Application\Database\Model\Stock::find($id);
     $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
     $provider->disabled = $data['disabled'] ?: $provider->disabled;
 
@@ -443,17 +443,17 @@ $app->delete('/stock/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Htt
 });
 
 $app->get('/user', function (Slim\Http\Request $request, Slim\Http\Response $response) {
-    return $response->withJson(\Application\Model\User::where(['disabled' => false])->get());
+    return $response->withJson(\Application\Database\Model\User::where(['disabled' => false])->get());
 });
 
 $app->get('/user/{id:[0-9]+}', function (Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
-    return $response->withJson(\Application\Model\User::find($id) ?: []);
+    return $response->withJson(\Application\Database\Model\User::find($id) ?: []);
 });
 
 $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $response) {
     $data = $request->getParsedBody();
-    $user = new \Application\Model\User();
+    $user = new \Application\Database\Model\User();
     $user->name = $data['name'];
     $user->username = $data['username'];
     $user->email = $data['email'];
@@ -469,7 +469,7 @@ $app->post('/user', function(Slim\Http\Request $request, Slim\Http\Response $res
 $app->put('/user/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $user = \Application\Model\User::find($id);
+    $user = \Application\Database\Model\User::find($id);
     $user->name = $data['name'] ?: $user->name;
     $user->username = $data['username'] ?: $user->username;
     $user->email = $data['email'] ?: $user->email;
@@ -485,7 +485,7 @@ $app->put('/user/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Re
 $app->delete('/user/{id:[0-9]+}', function(Slim\Http\Request $request, Slim\Http\Response $response, $args) {
     $id = $args['id'];
     $data = $request->getParsedBody();
-    $user = \Application\Model\User::find($id);
+    $user = \Application\Database\Model\User::find($id);
     $user->deactivation_date = date("Y-m-d H:i:s") ?: $user->deactivation_date;
     $user->disabled = $data['disabled'] ?: $user->disabled;
 
