@@ -16,7 +16,7 @@ return [
             'prefix' => (string) env("DB_PREFIX"),
         ],
         'mailer' => [
-            'transport' => (string) env("MAILER_TRANSPORT"),
+            'host' => (string) env("MAILER_HOST"),
             'port' => (int) env("MAILER_PORT"),
             'encryption' => (string) env("MAILER_ENCRYPTION"),
             'username' => (string) env("MAILER_USERNAME"),
