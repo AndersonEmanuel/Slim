@@ -19,6 +19,7 @@ return [
             'host' => (string) env("MAILER_HOST"),
             'port' => (int) env("MAILER_PORT"),
             'encryption' => (string) env("MAILER_ENCRYPTION"),
+            'authmode' => (string) env("MAILER_AUTH_MODE"),
             'username' => (string) env("MAILER_USERNAME"),
             'password' => (string) env("MAILER_PASSWORD"),
         ],
