@@ -14,7 +14,7 @@ use Slim\Http\Response;
  * @copyright (c) 2017, Anderson Emanuel
  * @version 1.0
  */
-class DefaultController {
+class LoginController {
 
     /**
      * 
@@ -46,7 +46,7 @@ class DefaultController {
      * @return Response
      */
     public function get(Request $request, Response $response, $args): Response {
-        
+
     }
 
     /**
