@@ -16,6 +16,18 @@ $container['db'] = function ($container) {
     return $capsule;
 };
 
+$container['mailer'] = function ($container) {
+    $transport = new \Swift_SmtpTransport();
+    $transport->setHost($container['settings']['mailer']['host']);
+    $transport->setPort($container['settings']['mailer']['port']);
+    $transport->setEncryption($container['settings']['mailer']['encryption']);
+    $transport->setAuthMode($container['settings']['mailer']['authmode']);
+    $transport->setUsername($container['settings']['mailer']['username']);
+    $transport->setPassword($container['settings']['mailer']['password']);
+
+    return new \Swift_Mailer($transport);
+};
+
 $container['errorHandler'] = function ($container) {
     return function (Slim\Http\Request $request, Slim\Http\Response $response, \Exception $exception) use ($container) {
         return $response->withJson(array(array("CODE" => 500, "DESCRIPTION" => "Internal Server Error")), 500);
