@@ -2,12 +2,13 @@
 
 namespace Application\Http\Controller;
 
+use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 /**
  * 
- * Description of DefaultController
+ * Description of LoginController
  * 
  * @package Application
  * @author Anderson Emanuel <contato@andersonemanuel.com.br>
@@ -15,6 +16,20 @@ use Slim\Http\Response;
  * @version 1.0
  */
 class LoginController {
+
+    /**
+     *
+     * @var Container 
+     */
+    protected $container;
+
+    /**
+     * 
+     * @param Container $container
+     */
+    public function __construct(Container $container) {
+        $this->container = $container;
+    }
 
     /**
      * 
@@ -46,7 +61,7 @@ class LoginController {
      * @return Response
      */
     public function get(Request $request, Response $response, $args): Response {
-
+        
     }
 
     /**
