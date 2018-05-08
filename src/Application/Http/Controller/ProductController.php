@@ -2,6 +2,7 @@
 
 namespace Application\Http\Controller;
 
+use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -15,6 +16,20 @@ use Slim\Http\Response;
  * @version 1.0
  */
 class ProductController {
+
+    /**
+     *
+     * @var Container 
+     */
+    protected $container;
+
+    /**
+     * 
+     * @param Container $container
+     */
+    public function __construct(Container $container) {
+        $this->container = $container;
+    }
 
     /**
      * 
