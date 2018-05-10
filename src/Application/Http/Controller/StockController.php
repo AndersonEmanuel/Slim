@@ -2,7 +2,6 @@
 
 namespace Application\Http\Controller;
 
-use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -16,43 +15,7 @@ use Slim\Http\Response;
  * @version 1.0
  */
 class StockController {
-
-    /**
-     *
-     * @var Container 
-     */
-    protected $container;
-
-    /**
-     * 
-     * @param Container $container
-     */
-    public function __construct(Container $container) {
-        $this->container = $container;
-    }
-
-    /**
-     * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
-     */
-    public function __invoke(Request $request, Response $response, $args): Response {
-        if ($request->isGet()) {
-            return $this->get($request, $response, $args);
-        }
-        if ($request->isPost()) {
-            return $this->post($request, $response);
-        }
-        if ($request->isPut()) {
-            return $this->put($request, $response, $args);
-        }
-        if ($request->isDelete()) {
-            return $this->delete($request, $response, $args);
-        }
-    }
-
+    
     /**
      * 
      * @param Request $request
