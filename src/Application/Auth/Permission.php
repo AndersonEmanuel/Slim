@@ -4,7 +4,7 @@ namespace Application\Auth;
 
 /**
  * 
- * Description of Authentication
+ * Description of Permission
  * 
  * @package Application
  * @author Anderson Emanuel <contato@andersonemanuel.com.br>
@@ -12,5 +12,5 @@ namespace Application\Auth;
  * @version 1.0
  */
 trait Permission {
-    
+
 }
