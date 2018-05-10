@@ -14,7 +14,7 @@ namespace Application\Session;
 class Session {
 
     public static function get($key, $default = null) {
-        if (self::exists($key)) {
+        if (static::exists($key)) {
             return $_SESSION[$key];
         }
 
@@ -26,7 +26,7 @@ class Session {
     }
 
     public static function destroy($key) {
-        if (self::exists($key)) {
+        if (static::exists($key)) {
             unset($_SESSION[$key]);
         }
     }
