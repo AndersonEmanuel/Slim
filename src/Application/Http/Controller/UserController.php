@@ -23,7 +23,7 @@ class UserController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function get(Request $request, Response $response, $args): Response {
+    protected function get(Request $request, Response $response, $args): Response {
         return $response->withJson(\Application\Database\Model\User::where(['disabled' => false])->get());
     }
 
@@ -34,7 +34,7 @@ class UserController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function post(Request $request, Response $response): Response {
+    protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $user = new \Application\Database\Model\User();
         $user->name = $data['name'];
@@ -56,7 +56,7 @@ class UserController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function put(Request $request, Response $response, $args): Response {
+    protected function put(Request $request, Response $response, $args): Response {
         $id = $args['id'];
         $data = $request->getParsedBody();
         $user = \Application\Database\Model\User::find($id);
@@ -79,7 +79,7 @@ class UserController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function delete(Request $request, Response $response, $args): Response {
+    protected function delete(Request $request, Response $response, $args): Response {
         $id = $args['id'];
         $data = $request->getParsedBody();
         $user = \Application\Database\Model\User::find($id);

@@ -23,7 +23,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function get(Request $request, Response $response, $args): Response {
+    protected function get(Request $request, Response $response, $args): Response {
         
     }
 
@@ -34,7 +34,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function post(Request $request, Response $response, $args): Response {
+    protected function post(Request $request, Response $response, $args): Response {
         
     }
 
@@ -45,7 +45,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function put(Request $request, Response $response, $args): Response {
+    protected function put(Request $request, Response $response, $args): Response {
         
     }
 
@@ -56,7 +56,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function delete(Request $request, Response $response, $args): Response {
+    protected function delete(Request $request, Response $response, $args): Response {
         
     }
 

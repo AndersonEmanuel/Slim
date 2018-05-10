@@ -23,7 +23,7 @@ class LogController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function get(Request $request, Response $response, $args): Response {
+    protected function get(Request $request, Response $response, $args): Response {
         return $response->withJson(\Application\Database\Model\Log::all());
     }
 
@@ -34,7 +34,7 @@ class LogController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function post(Request $request, Response $response): Response {
+    protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $log = new \Application\Database\Model\Log();
         $log->description = $data['description'];
@@ -52,7 +52,7 @@ class LogController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function put(Request $request, Response $response, $args): Response {
+    protected function put(Request $request, Response $response, $args): Response {
         
     }
 
@@ -63,7 +63,7 @@ class LogController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function delete(Request $request, Response $response, $args): Response {
+    protected function delete(Request $request, Response $response, $args): Response {
         
     }
 

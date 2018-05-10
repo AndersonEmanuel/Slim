@@ -23,7 +23,7 @@ class CustomerController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function get(Request $request, Response $response, $args): Response {
+    protected function get(Request $request, Response $response, $args): Response {
         return $response->withJson(\Application\Database\Model\Customer::where(['disabled' => false])->get());
     }
 
@@ -34,7 +34,7 @@ class CustomerController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function post(Request $request, Response $response): Response {
+    protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $customer = new \Application\Database\Model\Company();
         $customer->name = $data['name'];
@@ -54,7 +54,7 @@ class CustomerController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function put(Request $request, Response $response, $args): Response {
+    protected function put(Request $request, Response $response, $args): Response {
         $id = $args['id'];
         $data = $request->getParsedBody();
         $customer = \Application\Database\Model\Customer::find($id);
@@ -75,7 +75,7 @@ class CustomerController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    public function delete(Request $request, Response $response, $args): Response {
+    protected function delete(Request $request, Response $response, $args): Response {
         $id = $args['id'];
         $data = $request->getParsedBody();
         $customer = \Application\Database\Model\Customer::find($id);
