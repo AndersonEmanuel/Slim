@@ -15,7 +15,7 @@ use Slim\Http\Response;
  * @copyright (c) 2017, Anderson Emanuel
  * @version 1.0
  */
-abstract class AbstractController {
+abstract class AbstractController implements \Application\Http\ControllerInterface {
 
     /**
      *
