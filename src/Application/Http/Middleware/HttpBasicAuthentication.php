@@ -14,7 +14,7 @@ use Slim\Http\Response;
  * @copyright (c) 2017, Anderson Emanuel
  * @version 1.0
  */
-class HttpBasicAuthentication {
+class HttpBasicAuthentication extends \Application\Http\AbstractMiddleware {
 
     /**
      * HttpBasicAuthentication middleware invokable class

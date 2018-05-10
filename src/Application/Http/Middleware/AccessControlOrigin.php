@@ -14,7 +14,7 @@ use Slim\Http\Response;
  * @copyright (c) 2017, Anderson Emanuel
  * @version 1.0
  */
-class AccessControlOrigin {
+class AccessControlOrigin extends \Application\Http\AbstractMiddleware {
 
     /**
      * AccessControlOrigin middleware invokable class
