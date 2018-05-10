@@ -12,5 +12,5 @@ namespace Application\Mail;
  * @version 1.0
  */
 class Mailer {
-
+    
 }
