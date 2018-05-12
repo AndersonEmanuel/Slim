@@ -28,6 +28,16 @@ $container['mail'] = function ($container) {
     return new \Swift_Mailer($transport);
 };
 
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig(__DIR__ . '/../src/Application', [
+        'cache' => false,
+    ]);
+    $view->addExtension(new \Slim\Views\TwigExtension(
+            $container->router, $container->request->getUri()
+    ));
+    return $view;
+};
+
 $container['errorHandler'] = function ($container) {
     return function (Slim\Http\Request $request, Slim\Http\Response $response, \Exception $exception) use ($container) {
         return $response->withJson(array(array("CODE" => 500, "DESCRIPTION" => "Internal Server Error")), 500);
