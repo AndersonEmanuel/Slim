@@ -29,7 +29,7 @@ $container['mail'] = function ($container) {
 };
 
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . '/../src/Application', [
+    $view = new \Slim\Views\Twig(__DIR__ . '/../src/Application/Resources/Views/', [
         'cache' => false,
     ]);
     $view->addExtension(new \Slim\Views\TwigExtension(
