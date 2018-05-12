@@ -10,16 +10,12 @@ use PHPUnit\Framework\TestCase;
  * 
  * @package Application
  * @author Anderson Emanuel <contato@andersonemanuel.com.br>
- * @copyright (c) 2017, Anderson Emanuel
+ * @copyright (c) 2018, Anderson Emanuel
  * @version 1.0
  */
 class ApplicationTest extends TestCase {
 
-    public function testCanBeCreatedFromValid(): void {
-        
-    }
-
-    public function testCannotBeCreatedFromInvalid(): void {
+    public function isRun(): void {
         
     }
 
