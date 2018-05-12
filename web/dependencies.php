@@ -16,7 +16,7 @@ $container['db'] = function ($container) {
     return $capsule;
 };
 
-$container['mailer'] = function ($container) {
+$container['mail'] = function ($container) {
     $transport = new \Swift_SmtpTransport();
     $transport->setHost($container['settings']['mailer']['host']);
     $transport->setPort($container['settings']['mailer']['port']);
