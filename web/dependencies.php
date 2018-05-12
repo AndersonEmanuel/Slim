@@ -18,12 +18,12 @@ $container['db'] = function ($container) {
 
 $container['mail'] = function ($container) {
     $transport = new \Swift_SmtpTransport();
-    $transport->setHost($container['settings']['mailer']['host']);
-    $transport->setPort($container['settings']['mailer']['port']);
-    $transport->setEncryption($container['settings']['mailer']['encryption']);
-    $transport->setAuthMode($container['settings']['mailer']['authmode']);
-    $transport->setUsername($container['settings']['mailer']['username']);
-    $transport->setPassword($container['settings']['mailer']['password']);
+    $transport->setHost($container['settings']['mail']['host']);
+    $transport->setPort($container['settings']['mail']['port']);
+    $transport->setEncryption($container['settings']['mail']['encryption']);
+    $transport->setAuthMode($container['settings']['mail']['authmode']);
+    $transport->setUsername($container['settings']['mail']['username']);
+    $transport->setPassword($container['settings']['mail']['password']);
 
     return new \Swift_Mailer($transport);
 };

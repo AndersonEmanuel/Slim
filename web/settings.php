@@ -15,13 +15,13 @@ return [
             'port' => (int) env("DB_PORT"),
             'prefix' => (string) env("DB_PREFIX"),
         ],
-        'mailer' => [
-            'host' => (string) env("MAILER_HOST"),
-            'port' => (int) env("MAILER_PORT"),
-            'encryption' => (string) env("MAILER_ENCRYPTION"),
-            'authmode' => (string) env("MAILER_AUTH_MODE"),
-            'username' => (string) env("MAILER_USERNAME"),
-            'password' => (string) env("MAILER_PASSWORD"),
+        'mail' => [
+            'host' => (string) env("MAIL_HOST"),
+            'port' => (int) env("MAIL_PORT"),
+            'encryption' => (string) env("MAIL_ENCRYPTION"),
+            'authmode' => (string) env("MAIL_AUTH_MODE"),
+            'username' => (string) env("MAIL_USERNAME"),
+            'password' => (string) env("MAIL_PASSWORD"),
         ],
     ],
 ];
