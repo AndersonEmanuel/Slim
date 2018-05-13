@@ -2,6 +2,7 @@
 
 namespace Application\Http\Controller\Auth;
 
+use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -14,17 +15,20 @@ use Slim\Http\Response;
  * @copyright (c) 2017, Anderson Emanuel
  * @version 1.0
  */
-class LoginController extends \Application\Http\AbstractController {
+class LoginController implements \Application\Http\ControllerInterface {
+
+    /**
+     *
+     * @var Container 
+     */
+    protected $container;
 
     /**
      * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
+     * @param Container $container
      */
-    protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(array(array("CODE" => 405, "DESCRIPTION" => "Method not allowed")), 405);
+    public function __construct(Container $container) {
+        $this->container = $container;
     }
 
     /**
@@ -34,7 +38,7 @@ class LoginController extends \Application\Http\AbstractController {
      * @param type $args
      * @return Response
      */
-    protected function post(Request $request, Response $response): Response {
+    public function __invoke(Request $request, Response $response, $args): Response {
         $email = $request->getParam("email");
         $password = md5($request->getParam("password"));
 
@@ -50,28 +54,6 @@ class LoginController extends \Application\Http\AbstractController {
         } else {
             return $response->withJson(array(array("CODE" => 401, "DESCRIPTION" => "Unauthorized")), 401);
         }
-    }
-
-    /**
-     * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
-     */
-    protected function put(Request $request, Response $response, $args): Response {
-        return $response->withJson(array(array("CODE" => 405, "DESCRIPTION" => "Method not allowed")), 405);
-    }
-
-    /**
-     * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
-     */
-    protected function delete(Request $request, Response $response, $args): Response {
-        return $response->withJson(array(array("CODE" => 405, "DESCRIPTION" => "Method not allowed")), 405);
     }
 
 }
