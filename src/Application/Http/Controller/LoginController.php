@@ -47,6 +47,8 @@ class LoginController extends \Application\Http\AbstractController {
         if ($users->count()) {
             \Application\Session\Session::set("user", (array) $users->first());
             return $response->withStatus(302)->withHeader("Location", "/");
+        } else {
+            return $response->withJson(array(array("CODE" => 401, "DESCRIPTION" => "Unauthorized")), 401);
         }
     }
 
