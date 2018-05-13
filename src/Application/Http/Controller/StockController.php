@@ -24,7 +24,7 @@ class StockController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\Stock::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\Stock::where(["disabled" => false])->get());
     }
 
     /**
@@ -57,11 +57,11 @@ class StockController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $provider = \Application\Database\Model\Stock::find($id);
         $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
-        $provider->disabled = $data['disabled'] ?: $provider->disabled;
+        $provider->disabled = $data["disabled"] ?: $provider->disabled;
 
         $provider->save();
 

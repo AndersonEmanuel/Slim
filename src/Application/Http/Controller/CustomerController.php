@@ -24,7 +24,7 @@ class CustomerController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\Customer::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\Customer::where(["disabled" => false])->get());
     }
 
     /**
@@ -37,10 +37,10 @@ class CustomerController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $customer = new \Application\Database\Model\Company();
-        $customer->name = $data['name'];
-        $customer->email = $data['email'];
-        $customer->phone = $data['phone'];
-        $customer->postal_code = $data['postal_code'];
+        $customer->name = $data["name"];
+        $customer->email = $data["email"];
+        $customer->phone = $data["phone"];
+        $customer->postal_code = $data["postal_code"];
 
         $customer->save();
 
@@ -55,13 +55,13 @@ class CustomerController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $customer = \Application\Database\Model\Customer::find($id);
-        $customer->name = $data['name'] ?: $customer->name;
-        $customer->email = $data['email'] ?: $customer->email;
-        $customer->phone = $data['phone'] ?: $customer->phone;
-        $customer->postal_code = $data['postal_code'] ?: $customer->postal_code;
+        $customer->name = $data["name"] ?: $customer->name;
+        $customer->email = $data["email"] ?: $customer->email;
+        $customer->phone = $data["phone"] ?: $customer->phone;
+        $customer->postal_code = $data["postal_code"] ?: $customer->postal_code;
 
         $customer->save();
 
@@ -76,11 +76,11 @@ class CustomerController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $customer = \Application\Database\Model\Customer::find($id);
         $customer->deactivation_date = date("Y-m-d H:i:s") ?: $customer->deactivation_date;
-        $customer->disabled = $data['disabled'] ?: $customer->disabled;
+        $customer->disabled = $data["disabled"] ?: $customer->disabled;
 
         $customer->save();
 

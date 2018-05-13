@@ -37,8 +37,8 @@ class LogController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $log = new \Application\Database\Model\Log();
-        $log->description = $data['description'];
-        $log->source = $data['source'];
+        $log->description = $data["description"];
+        $log->source = $data["source"];
 
         $log->save();
 

@@ -24,7 +24,7 @@ class PaymentTypeController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\PaymentType::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\PaymentType::where(["disabled" => false])->get());
     }
 
     /**
@@ -37,10 +37,10 @@ class PaymentTypeController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $paymenttype = new \Application\Database\Model\PaymentType();
-        $paymenttype->name = $data['name'];
-        $paymenttype->description = $data['description'];
-        $paymenttype->allows_discount = $data['allows_discount'];
-        $paymenttype->allows_installment = $data['allows_installment'];
+        $paymenttype->name = $data["name"];
+        $paymenttype->description = $data["description"];
+        $paymenttype->allows_discount = $data["allows_discount"];
+        $paymenttype->allows_installment = $data["allows_installment"];
 
         $paymenttype->save();
 
@@ -55,13 +55,13 @@ class PaymentTypeController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $paymenttype = \Application\Database\Model\PaymentType::find($id);
-        $paymenttype->name = $data['name'] ?: $paymenttype->name;
-        $paymenttype->description = $data['description'] ?: $paymenttype->description;
-        $paymenttype->allows_discount = $data['allows_discount'] ?: $paymenttype->allows_discount;
-        $paymenttype->allows_installment = $data['allows_installment'] ?: $paymenttype->allows_installment;
+        $paymenttype->name = $data["name"] ?: $paymenttype->name;
+        $paymenttype->description = $data["description"] ?: $paymenttype->description;
+        $paymenttype->allows_discount = $data["allows_discount"] ?: $paymenttype->allows_discount;
+        $paymenttype->allows_installment = $data["allows_installment"] ?: $paymenttype->allows_installment;
 
         $paymenttype->save();
 
@@ -76,11 +76,11 @@ class PaymentTypeController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $paymenttype = \Application\Database\Model\PaymentType::find($id);
         $paymenttype->deactivation_date = date("Y-m-d H:i:s") ?: $paymenttype->deactivation_date;
-        $paymenttype->disabled = $data['disabled'] ?: $paymenttype->disabled;
+        $paymenttype->disabled = $data["disabled"] ?: $paymenttype->disabled;
 
         $paymenttype->save();
 

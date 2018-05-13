@@ -24,7 +24,7 @@ class CompanyController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\Company::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\Company::where(["disabled" => false])->get());
     }
 
     /**
@@ -37,10 +37,10 @@ class CompanyController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $company = new \Application\Database\Model\Company();
-        $company->name = $data['name'];
-        $company->email = $data['email'];
-        $company->phone = $data['phone'];
-        $company->postal_code = $data['postal_code'];
+        $company->name = $data["name"];
+        $company->email = $data["email"];
+        $company->phone = $data["phone"];
+        $company->postal_code = $data["postal_code"];
 
         $company->save();
 
@@ -55,13 +55,13 @@ class CompanyController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $company = \Application\Database\Model\Company::find($id);
-        $company->name = $data['name'] ?: $company->name;
-        $company->email = $data['email'] ?: $company->email;
-        $company->phone = $data['phone'] ?: $company->phone;
-        $company->postal_code = $data['postal_code'] ?: $company->postal_code;
+        $company->name = $data["name"] ?: $company->name;
+        $company->email = $data["email"] ?: $company->email;
+        $company->phone = $data["phone"] ?: $company->phone;
+        $company->postal_code = $data["postal_code"] ?: $company->postal_code;
 
         $company->save();
 
@@ -76,11 +76,11 @@ class CompanyController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $company = \Application\Database\Model\Company::find($id);
         $company->deactivation_date = date("Y-m-d H:i:s") ?: $company->deactivation_date;
-        $company->disabled = $data['disabled'] ?: $company->disabled;
+        $company->disabled = $data["disabled"] ?: $company->disabled;
 
         $company->save();
 

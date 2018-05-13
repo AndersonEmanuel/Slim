@@ -24,7 +24,7 @@ class GroupController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\Group::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\Group::where(["disabled" => false])->get());
     }
 
     /**
@@ -37,8 +37,8 @@ class GroupController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $group = new \Application\Database\Model\Group();
-        $group->name = $data['name'];
-        $group->description = $data['description'];
+        $group->name = $data["name"];
+        $group->description = $data["description"];
 
         $group->save();
 
@@ -53,11 +53,11 @@ class GroupController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $group = \Application\Database\Model\Group::find($id);
-        $group->name = $data['name'] ?: $group->name;
-        $group->description = $data['description'] ?: $group->description;
+        $group->name = $data["name"] ?: $group->name;
+        $group->description = $data["description"] ?: $group->description;
 
         $group->save();
 
@@ -72,11 +72,11 @@ class GroupController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $group = \Application\Database\Model\Group::find($id);
         $group->deactivation_date = date("Y-m-d H:i:s") ?: $group->deactivation_date;
-        $group->disabled = $data['disabled'] ?: $group->disabled;
+        $group->disabled = $data["disabled"] ?: $group->disabled;
 
         $group->save();
 

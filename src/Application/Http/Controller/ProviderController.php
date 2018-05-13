@@ -24,7 +24,7 @@ class ProviderController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\Provider::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\Provider::where(["disabled" => false])->get());
     }
 
     /**
@@ -37,10 +37,10 @@ class ProviderController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $provider = new \Application\Database\Model\Provider();
-        $provider->name = $data['name'];
-        $provider->email = $data['email'];
-        $provider->phone = $data['phone'];
-        $provider->postal_code = $data['postal_code'];
+        $provider->name = $data["name"];
+        $provider->email = $data["email"];
+        $provider->phone = $data["phone"];
+        $provider->postal_code = $data["postal_code"];
 
         $provider->save();
 
@@ -55,13 +55,13 @@ class ProviderController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $provider = \Application\Database\Model\Provider::find($id);
-        $provider->name = $data['name'] ?: $provider->name;
-        $provider->email = $data['email'] ?: $provider->email;
-        $provider->phone = $data['phone'] ?: $provider->phone;
-        $provider->postal_code = $data['postal_code'] ?: $provider->postal_code;
+        $provider->name = $data["name"] ?: $provider->name;
+        $provider->email = $data["email"] ?: $provider->email;
+        $provider->phone = $data["phone"] ?: $provider->phone;
+        $provider->postal_code = $data["postal_code"] ?: $provider->postal_code;
 
         $provider->save();
 
@@ -76,11 +76,11 @@ class ProviderController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $provider = \Application\Database\Model\Provider::find($id);
         $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
-        $provider->disabled = $data['disabled'] ?: $provider->disabled;
+        $provider->disabled = $data["disabled"] ?: $provider->disabled;
 
         $provider->save();
 

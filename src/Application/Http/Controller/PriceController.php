@@ -26,8 +26,8 @@ class PriceController extends \Application\Http\AbstractController {
     protected function get(Request $request, Response $response, $args): Response {
         return $response->withJson(
                         \Application\Database\Model\Price::
-                                with('product')
-                                ->with('paymentType')
+                                with("product")
+                                ->with("paymentType")
                                 ->get()
         );
     }
@@ -62,11 +62,11 @@ class PriceController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $provider = \Application\Database\Model\Price::find($id);
         $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
-        $provider->disabled = $data['disabled'] ?: $provider->disabled;
+        $provider->disabled = $data["disabled"] ?: $provider->disabled;
 
         $provider->save();
 

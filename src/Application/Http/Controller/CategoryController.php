@@ -24,9 +24,9 @@ class CategoryController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        //$id = $args['id'];
+        //$id = $args["id"];
         //return $response->withJson(\Application\Database\Model\Category::find($id) ?: []);
-        return $response->withJson(\Application\Database\Model\Category::where(['disabled' => false])->get());
+        return $response->withJson(\Application\Database\Model\Category::where(["disabled" => false])->get());
     }
 
     /**
@@ -39,8 +39,8 @@ class CategoryController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $category = new \Application\Database\Model\Category();
-        $category->name = $data['name'];
-        $category->description = $data['description'];
+        $category->name = $data["name"];
+        $category->description = $data["description"];
 
         $category->save();
 
@@ -55,11 +55,11 @@ class CategoryController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $category = \Application\Database\Model\Category::find($id);
-        $category->name = $data['name'] ?: $category->name;
-        $category->description = $data['description'] ?: $category->description;
+        $category->name = $data["name"] ?: $category->name;
+        $category->description = $data["description"] ?: $category->description;
 
         $category->save();
 
@@ -74,11 +74,11 @@ class CategoryController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $category = \Application\Database\Model\Category::find($id);
         $category->deactivation_date = date("Y-m-d H:i:s") ?: $category->deactivation_date;
-        $category->disabled = $data['disabled'] ?: $category->disabled;
+        $category->disabled = $data["disabled"] ?: $category->disabled;
 
         $category->save();
 

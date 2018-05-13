@@ -26,8 +26,8 @@ class ProductController {
     protected function get(Request $request, Response $response, $args): Response {
         return $response->withJson(
                         \Application\Database\Model\Product::
-                                with('productStock')
-                                ->with('productPrice')
+                                with("productStock")
+                                ->with("productPrice")
                                 ->get()
         );
     }
@@ -42,8 +42,8 @@ class ProductController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $product = new \Application\Database\Model\Product();
-        $product->name = $data['name'];
-        $product->description = $data['description'];
+        $product->name = $data["name"];
+        $product->description = $data["description"];
 
         $product->save();
 
@@ -58,11 +58,11 @@ class ProductController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $product = \Application\Database\Model\Product::find($id);
-        $product->name = $data['name'] ?: $product->name;
-        $product->description = $data['description'] ?: $product->description;
+        $product->name = $data["name"] ?: $product->name;
+        $product->description = $data["description"] ?: $product->description;
 
         $product->save();
 
@@ -77,11 +77,11 @@ class ProductController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args['id'];
+        $id = $args["id"];
         $data = $request->getParsedBody();
         $product = \Application\Database\Model\Product::find($id);
         $product->deactivation_date = date("Y-m-d H:i:s") ?: $product->deactivation_date;
-        $product->disabled = $data['disabled'] ?: $product->disabled;
+        $product->disabled = $data["disabled"] ?: $product->disabled;
 
         $product->save();
 
