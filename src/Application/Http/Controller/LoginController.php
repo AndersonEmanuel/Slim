@@ -24,7 +24,7 @@ class LoginController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 405, "DESCRIPTION" => "Method not allowed")), 405);
     }
 
     /**
