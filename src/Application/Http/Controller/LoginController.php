@@ -35,18 +35,18 @@ class LoginController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function post(Request $request, Response $response): Response {
-        $email = $request->getParam('email');
-        $password = md5($request->getParam('password'));
+        $email = $request->getParam("email");
+        $password = md5($request->getParam("password"));
 
         $users = \Application\Database\Model\User::where([
-                    'email' => $email,
-                    'password' => $password,
-                    'disabled' => false
+                    "email" => $email,
+                    "password" => $password,
+                    "disabled" => false
                 ])->get();
 
         if ($users->count()) {
-            $_SESSION['user'] = (array) $users->first();
-            return $response->withStatus(302)->withHeader('Location', '/');
+            \Application\Session\Session::set("user", (array) $users->first());
+            return $response->withStatus(302)->withHeader("Location", "/");
         }
     }
 
