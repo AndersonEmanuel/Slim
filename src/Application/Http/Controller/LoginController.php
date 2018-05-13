@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Http\Controller\Auth;
+namespace Application\Http\Controller;
 
 use Slim\Container;
 use Slim\Http\Request;
