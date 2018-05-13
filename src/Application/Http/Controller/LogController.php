@@ -53,7 +53,7 @@ class LogController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 405, "DESCRIPTION" => "Method not allowed")), 405);
     }
 
     /**
@@ -64,7 +64,7 @@ class LogController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 405, "DESCRIPTION" => "Method not allowed")), 405);
     }
 
 }
