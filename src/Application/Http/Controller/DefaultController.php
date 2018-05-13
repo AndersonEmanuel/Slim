@@ -24,7 +24,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
 
     /**
@@ -35,7 +35,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function post(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
 
     /**
@@ -46,7 +46,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
 
     /**
@@ -57,7 +57,7 @@ class DefaultController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        
+        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
 
 }
