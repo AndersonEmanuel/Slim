@@ -45,7 +45,8 @@ class LoginController implements \Application\Http\ControllerInterface {
         $users = \Application\Database\Model\User::where([
                     "email" => $email,
                     "password" => $password,
-                    "disabled" => false
+                    "disabled" => false,
+                    "expired" => false
                 ])->get();
 
         if ($users->count()) {
