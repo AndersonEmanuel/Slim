@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 /**
  * 
- * Description of HttpBasicAuthentication
+ * Description of RedirectIfAuthenticated
  * 
  * @package Application
  * @author Anderson Emanuel <contato@andersonemanuel.com.br>
