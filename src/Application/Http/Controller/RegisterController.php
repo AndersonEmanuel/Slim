@@ -39,7 +39,14 @@ class RegisterController implements \Application\Http\ControllerInterface {
      * @return Response
      */
     public function __invoke(Request $request, Response $response, $args): Response {
-        
+        $message = new \Swift_Message();
+        $message->setSubject("Your account has been registered");
+        $message->setFrom($this->container->settings["mail"]["username"]);
+        $message->setTo();
+        $message->setBody($this->container->view->fetch("register.html.twig"));
+        $message->setContentType("text/html");
+
+        $this->container->mail->send($message);
 
         return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
