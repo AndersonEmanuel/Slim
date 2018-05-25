@@ -24,8 +24,12 @@ class ProviderController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
+        $id = isset($args["id"]) ? $args["id"] : null;
+        if ($id) {
+            return $response->withJson(\Application\Database\Model\Provider::find($id) ?: []);
+        } else {
         return $response->withJson(\Application\Database\Model\Provider::where(["disabled" => false])->get());
-    }
+    }}
 
     /**
      * 

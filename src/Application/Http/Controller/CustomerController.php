@@ -24,7 +24,12 @@ class CustomerController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(\Application\Database\Model\Customer::where(["disabled" => false])->get());
+        $id = isset($args["id"]) ? $args["id"] : null;
+        if ($id) {
+            return $response->withJson(\Application\Database\Model\Customer::find($id) ?: []);
+        } else {
+            return $response->withJson(\Application\Database\Model\Customer::where(["disabled" => false])->get());
+        }
     }
 
     /**

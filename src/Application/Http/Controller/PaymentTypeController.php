@@ -24,8 +24,12 @@ class PaymentTypeController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
+        $id = isset($args["id"]) ? $args["id"] : null;
+        if ($id) {
+            return $response->withJson(\Application\Database\Model\PaymentType::find($id) ?: []);
+        } else {
         return $response->withJson(\Application\Database\Model\PaymentType::where(["disabled" => false])->get());
-    }
+    }}
 
     /**
      * 

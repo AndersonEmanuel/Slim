@@ -24,9 +24,12 @@ class CategoryController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        //$id = $args["id"];
-        //return $response->withJson(\Application\Database\Model\Category::find($id) ?: []);
-        return $response->withJson(\Application\Database\Model\Category::where(["disabled" => false])->get());
+        $id = isset($args["id"]) ? $args["id"] : null;
+        if ($id) {
+            return $response->withJson(\Application\Database\Model\Category::find($id) ?: []);
+        } else {
+            return $response->withJson(\Application\Database\Model\Category::where(["disabled" => false])->get());
+        }
     }
 
     /**
@@ -78,7 +81,7 @@ class CategoryController extends \Application\Http\AbstractController {
         $data = $request->getParsedBody();
         $category = \Application\Database\Model\Category::find($id);
         $category->deactivation_date = date("Y-m-d H:i:s") ?: $category->deactivation_date;
-        $category->disabled = $data["disabled"] ?: $category->disabled;
+        $category->disabled = 1 ?: $category->disabled;
 
         $category->save();
 
