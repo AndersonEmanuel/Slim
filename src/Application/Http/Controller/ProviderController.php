@@ -14,7 +14,7 @@ use Slim\Http\Response;
  * @copyright (c) 2018, Anderson Emanuel
  * @version 1.0
  */
-class ProviderController {
+class ProviderController extends \Application\Http\AbstractController {
 
     /**
      * 
@@ -28,8 +28,9 @@ class ProviderController {
         if ($id) {
             return $response->withJson(\Application\Database\Model\Provider::find($id) ?: []);
         } else {
-        return $response->withJson(\Application\Database\Model\Provider::where(["disabled" => false])->get());
-    }}
+            return $response->withJson(\Application\Database\Model\Provider::where(["disabled" => false])->get());
+        }
+    }
 
     /**
      * 
