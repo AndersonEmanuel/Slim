@@ -38,8 +38,8 @@ class Log extends Migration {
             $table->increments('id');
             $table->text('description');
             $table->string('source', 100);
-            $table->dateTime('insertion_date')->default('NOW()');
-            $table->dateTime('edition_date')->nullable();
+            $table->dateTime('create_at')->default('NOW()');
+            $table->dateTime('update_at')->default('NOW()');
         });
     }
 

@@ -40,9 +40,9 @@ class PaymentType extends Migration {
             $table->text('description');
             $table->boolean('allows_discount')->default('0');
             $table->boolean('allows_installment')->default('0');
-            $table->dateTime('insertion_date')->default('NOW()');
-            $table->dateTime('edition_date')->nullable();
-            $table->dateTime('deactivation_date')->nullable();
+            $table->dateTime('create_at')->default('NOW()');
+            $table->dateTime('update_at')->default('NOW()');
+            $table->dateTime('delete_at')->nullable();
             $table->boolean('disabled')->default('0');
         });
     }

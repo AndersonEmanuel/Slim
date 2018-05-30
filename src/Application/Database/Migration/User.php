@@ -42,9 +42,9 @@ class User extends Migration {
             $table->string('password', 100);
             $table->text('profile')->nullable();
             $table->text('cover')->nullable();
-            $table->dateTime('insertion_date')->default('NOW()');
-            $table->dateTime('edition_date')->nullable();
-            $table->dateTime('deactivation_date')->nullable();
+            $table->dateTime('create_at')->default('NOW()');
+            $table->dateTime('update_at')->default('NOW()');
+            $table->dateTime('delete_at')->nullable();
             $table->boolean('expired')->default('0');
             $table->boolean('disabled')->default('0');
         });

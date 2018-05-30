@@ -38,9 +38,9 @@ class Group extends Migration {
             $table->increments('id');
             $table->string('name', 100);
             $table->text('description')->nullable();
-            $table->dateTime('insertion_date')->default('NOW()');
-            $table->dateTime('edition_date')->nullable();
-            $table->dateTime('deactivation_date')->nullable();
+            $table->dateTime('create_at')->default('NOW()');
+            $table->dateTime('update_at')->default('NOW()');
+            $table->dateTime('delete_at')->nullable();
             $table->boolean('disabled')->default('0');
         });
     }
