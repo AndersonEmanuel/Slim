@@ -80,7 +80,7 @@ class GroupController extends \Application\Http\AbstractController {
         $id = $args["id"];
         $data = $request->getParsedBody();
         $group = \Application\Database\Model\Group::find($id);
-        $group->deactivation_date = date("Y-m-d H:i:s") ?: $group->deactivation_date;
+        $group->delete_at = date("Y-m-d H:i:s") ?: $group->delete_at;
         $group->disabled = $data["disabled"] ?: $group->disabled;
 
         $group->save();
