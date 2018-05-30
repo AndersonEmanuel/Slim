@@ -14,7 +14,7 @@ use Slim\Http\Response;
  * @copyright (c) 2018, Anderson Emanuel
  * @version 1.0
  */
-class ProductController {
+class ProductController extends \Application\Http\AbstractController {
 
     /**
      * 
