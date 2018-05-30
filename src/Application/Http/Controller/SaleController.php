@@ -14,7 +14,7 @@ use Slim\Http\Response;
  * @copyright (c) 2018, Anderson Emanuel
  * @version 1.0
  */
-class SaleController {
+class SaleController extends \Application\Http\AbstractController {
 
     /**
      * 
@@ -24,14 +24,24 @@ class SaleController {
      * @return Response
      */
     protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(
-                        \Application\Database\Model\Sale::
-                                with("customer")
-                                ->with("paymentType")
-                                ->with("user")
-                                ->with("saleProduct")
-                                ->get()
-        );
+        $id = isset($args["id"]) ? $args["id"] : null;
+        if ($id) {
+            return $response->withJson(
+                            \Application\Database\Model\Sale::
+                                    with("customer")
+                                    ->with("paymentType")
+                                    ->with("user")
+                                    ->with("saleProduct")
+                                    ->find($id) ?: []);
+        } else {
+            return $response->withJson(
+                            \Application\Database\Model\Sale::
+                                    with("customer")
+                                    ->with("paymentType")
+                                    ->with("user")
+                                    ->with("saleProduct")
+                                    ->get());
+        }
     }
 
     /**
