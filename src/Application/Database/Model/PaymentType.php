@@ -15,9 +15,6 @@ use \Illuminate\Database\Eloquent\Model;
  */
 class PaymentType extends Model {
 
-    const CREATED_AT = 'insertion_date';
-    const UPDATED_AT = 'edition_date';
-
     protected $table = 'payment_type';
 
 }

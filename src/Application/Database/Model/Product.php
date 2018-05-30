@@ -15,17 +15,14 @@ use \Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model {
 
-    const CREATED_AT = 'insertion_date';
-    const UPDATED_AT = 'edition_date';
-
     protected $table = 'product';
 
     public function productStock() {
-        return $this->hasOne(\Application\Model\Stock::class, 'id_product', 'id');
+        return $this->hasOne(\Application\Database\Model\Stock::class, 'id_product', 'id');
     }
 
     public function productPrice() {
-        return $this->hasMany(\Application\Model\Price::class, 'id_product', 'id');
+        return $this->hasMany(\Application\Database\Model\Price::class, 'id_product', 'id');
     }
 
 }

@@ -15,9 +15,16 @@ use \Illuminate\Database\Eloquent\Model;
  */
 class User extends Model {
 
-    const CREATED_AT = 'insertion_date';
-    const UPDATED_AT = 'edition_date';
-
+    /**
+     *
+     * @var string 
+     */
     protected $table = 'user';
+
+    /**
+     *
+     * @var array 
+     */
+    protected $hidden = ['password'];
 
 }

@@ -14,10 +14,7 @@ use \Illuminate\Database\Eloquent\Model;
  * @version 1.0
  */
 class Company extends Model {
-
-    const CREATED_AT = 'insertion_date';
-    const UPDATED_AT = 'edition_date';
-
+    
     protected $table = 'company';
 
 }
