@@ -80,7 +80,7 @@ class CategoryController extends \Application\Http\AbstractController {
         $id = $args["id"];
         $data = $request->getParsedBody();
         $category = \Application\Database\Model\Category::find($id);
-        $category->delete_at = date("Y-m-d H:i:s") ?: $category->delete_at;
+        $category->deleted_at = date("Y-m-d H:i:s") ?: $category->deleted_at;
         $category->disabled = 1 ?: $category->disabled;
 
         $category->save();
