@@ -2,6 +2,7 @@
 
 namespace Application\Http\Controller;
 
+use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -14,49 +15,29 @@ use Slim\Http\Response;
  * @copyright (c) 2018, Anderson Emanuel
  * @version 1.0
  */
-class DefaultController extends \Application\Http\AbstractController {
+class DefaultController implements \Application\Http\ControllerInterface {
+
+    /**
+     *
+     * @var Container 
+     */
+    protected $container;
 
     /**
      * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
+     * @param Container $container
      */
-    protected function get(Request $request, Response $response, $args): Response {
-        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
+    public function __construct(Container $container) {
+        $this->container = $container;
     }
 
     /**
      * 
      * @param Request $request
      * @param Response $response
-     * @param type $args
      * @return Response
      */
-    protected function post(Request $request, Response $response, $args): Response {
-        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
-    }
-
-    /**
-     * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
-     */
-    protected function put(Request $request, Response $response, $args): Response {
-        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
-    }
-
-    /**
-     * 
-     * @param Request $request
-     * @param Response $response
-     * @param type $args
-     * @return Response
-     */
-    protected function delete(Request $request, Response $response, $args): Response {
+    public function __invoke(Request $request, Response $response, $args): Response {
         return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
 
