@@ -15,17 +15,14 @@ use \Illuminate\Database\Eloquent\Model;
  */
 class Price extends Model {
 
-    const CREATED_AT = 'insertion_date';
-    const UPDATED_AT = 'edition_date';
-
     protected $table = 'product_price';
 
     public function product() {
-        return $this->hasOne(\Application\Model\Product::class, 'id', 'id_product');
+        return $this->hasOne(\Application\Database\Model\Product::class, 'id', 'id_product');
     }
 
     public function paymentType() {
-        return $this->hasOne(\Application\Model\PaymentType::class, 'id', 'id_payment_type');
+        return $this->hasOne(\Application\Database\Model\PaymentType::class, 'id', 'id_payment_type');
     }
 
 }
