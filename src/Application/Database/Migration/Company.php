@@ -40,9 +40,9 @@ class Company extends Migration {
             $table->string('email', 50);
             $table->string('phone', 20);
             $table->string('postal_code', 10);
-            $table->dateTime('create_at')->default('NOW()');
-            $table->dateTime('update_at')->default('NOW()');
-            $table->dateTime('delete_at')->nullable();
+            $table->dateTime('created_at')->default('NOW()');
+            $table->dateTime('updated_at')->default('NOW()');
+            $table->dateTime('deleted_at')->nullable();
             $table->boolean('disabled');
         });
     }
