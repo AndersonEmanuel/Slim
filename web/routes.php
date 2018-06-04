@@ -13,5 +13,7 @@ $app->any('/sale[/{id:[0-9]+}]', \Application\Http\Controller\SaleController::cl
 $app->any('/stock[/{id:[0-9]+}]', \Application\Http\Controller\StockController::class);
 $app->any('/user[/{id:[0-9]+}]', \Application\Http\Controller\UserController::class);
 
-$app->post('/login', \Application\Http\Controller\LoginController::class);
-$app->post('/register', \Application\Http\Controller\RegisterController::class);
+$app->get('/', \Application\Http\Controller\DefaultController::class)->setName('default');
+
+$app->post('/login', \Application\Http\Controller\LoginController::class)->setName('login');
+$app->post('/register', \Application\Http\Controller\RegisterController::class)->setName('register');

@@ -52,7 +52,32 @@ class SaleController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function post(Request $request, Response $response): Response {
-        
+        $data = $request->getParsedBody();
+
+        $sale = new \Application\Database\Model\Sale();
+
+        $sale->id_customer = $data["id_customer"];
+        $sale->id_payment_type = $data["id_payment_type"];
+        $sale->id_user = $data["id_user"];
+        $sale->subtotal = $data["subtotal"];
+        $sale->discount = $data["discount"];
+        $sale->total = $data["total"];
+
+        $sale->save();
+
+        foreach ($data["sale_product"] as $item) {
+            $product = new \Application\Database\Model\SaleProduct();
+            
+            $product->id_sale = $sale->id;
+            $product->id_product = $item->id_product;
+            $product->value = $item->value;
+            $product->amount = $item->amount;
+            $product->subtotal = $item->subtotal;
+            
+            $product->save();
+        }
+
+        return $response->withJson($sale);
     }
 
     /**
@@ -63,7 +88,7 @@ class SaleController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        
+        $data = $request->getParsedBody();
     }
 
     /**
@@ -77,7 +102,7 @@ class SaleController extends \Application\Http\AbstractController {
         $id = $args["id"];
         $data = $request->getParsedBody();
         $provider = \Application\Database\Model\Sale::find($id);
-        $provider->deactivation_date = date("Y-m-d H:i:s") ?: $provider->deactivation_date;
+        $provider->deleted_at = date("Y-m-d H:i:s") ?: $provider->deleted_at;
         $provider->disabled = $data["disabled"] ?: $provider->disabled;
 
         $provider->save();

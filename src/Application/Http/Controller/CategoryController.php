@@ -42,8 +42,8 @@ class CategoryController extends \Application\Http\AbstractController {
     protected function post(Request $request, Response $response): Response {
         $data = $request->getParsedBody();
         $category = new \Application\Database\Model\Category();
-        $category->name = $data["name"];
-        $category->description = $data["description"];
+        $category->name = (string) $data["name"];
+        $category->description = (string) $data["description"];
 
         $category->save();
 
@@ -58,11 +58,11 @@ class CategoryController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function put(Request $request, Response $response, $args): Response {
-        $id = $args["id"];
+        $id = isset($args["id"]) ? $args["id"] : null;
         $data = $request->getParsedBody();
         $category = \Application\Database\Model\Category::find($id);
-        $category->name = $data["name"] ?: $category->name;
-        $category->description = $data["description"] ?: $category->description;
+        $category->name = (string) $data["name"] ?: $category->name;
+        $category->description = (string) $data["description"] ?: $category->description;
 
         $category->save();
 
@@ -77,11 +77,11 @@ class CategoryController extends \Application\Http\AbstractController {
      * @return Response
      */
     protected function delete(Request $request, Response $response, $args): Response {
-        $id = $args["id"];
+        $id = isset($args["id"]) ? $args["id"] : null;
         $data = $request->getParsedBody();
         $category = \Application\Database\Model\Category::find($id);
-        $category->deleted_at = date("Y-m-d H:i:s") ?: $category->deleted_at;
-        $category->disabled = 1 ?: $category->disabled;
+        $category->deleted_at = (string) date("Y-m-d H:i:s") ?: $category->deleted_at;
+        $category->disabled = (bool) 1 ?: $category->disabled;
 
         $category->save();
 

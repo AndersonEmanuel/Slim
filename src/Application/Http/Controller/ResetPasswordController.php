@@ -31,8 +31,16 @@ class ResetPasswordController implements \Application\Http\ControllerInterface {
         $this->container = $container;
     }
 
+    /**
+     * 
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function __invoke(Request $request, Response $response, $args): Response {
-        
+        $data = $request->getParsedBody();
+
+        return $response->withJson(array(array("CODE" => 200, "DESCRIPTION" => "Ok")), 200);
     }
 
 }
